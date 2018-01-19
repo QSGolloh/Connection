@@ -1,20 +1,38 @@
 <?php
+/**
+ *@author Selassie Golloh
+ *@version 1.0
+ **/
+
+
 include_once('../classes/userprofileclass.php');
 
-class UserController
-{
+	//code to handle update button click
+	if (isset($_POST['update'])){
+        editprofile();
+	}
 
-	function getUserByMajor($major)
+
+	function getUserById($id)
 	{
+		//global $user_id;
+		$user_id = $id;
+		$searchClass = new profile();
+		$searchClass->getUserById($user_id); 
+		return $searchClass->fetchResultObject();
+
+	}
+
+	function editprofile()
+	{
+		$user_id = 3;  // get value from session
+		$lname = $_POST['lastname'];
+		$poWork= $_POST['poWork'];
+		$ppic= $_POST['ppic']; 
 		$profClass = new profile();
 		$profClass->editprofile($user_id, $lname, $poWork, $ppic);
 		return $profClass->fetchResultObject();
 	}
-//are u with me hun? over yh over am i done? over
-	//kinda...so the next thing we have to worry about is how
-	//you will be getting these parameters, but we will do that when we put in the template cool?yhp
-	//so technically done with task 3 backend, left with frontend....yaay over yaaay over
-	///lets see the complexity of task 4 and 5 ans see if we should do those rn or not over ohk over
-}
+
 
 ?>

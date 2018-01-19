@@ -1,5 +1,9 @@
 <?php
 /**
+ *@author Selassie Golloh
+ *@version 1.0
+ **/
+/**
 *Getting the database credentials
 */
 require_once('databaseinfo.php');

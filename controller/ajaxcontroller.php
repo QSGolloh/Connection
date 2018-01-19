@@ -1,14 +1,10 @@
 <?php
-// we are coming to implement the ajax controller
-/*
-Management Information Systems
-Electrical EngineeringIT
-Business Administration
-Mechanical Engineering.   wait 
-Computer Science
-Chemical Engineering 
-*/
+/**
+ *@author Selassie Golloh
+ *@version 1.0
+ **/
 
+include_once('userprofilecontroller.php'); //including the userprofile controller 
 include_once('searchcontroller.php'); //including the searchcontroller
 $msg = $_REQUEST['msg']; 
 
@@ -19,9 +15,7 @@ switch($msg){
 	$search = new SearchController();
 	$major = $_REQUEST['major']; // getting the major from the URL
 	$searchResult = $search->getUserByMajor(trim($major));
-	//this is the response we will be sending to ajax ok
 	$resultsArray = array();
-	//checking if we got something from the search ok
 	if ($searchResult){
 		//looping through the results and putting them in an array
 		foreach ($searchResult as $res) {
@@ -71,7 +65,7 @@ switch($msg){
 		}
 		echo json_encode($resultsArray);
 	} else {
-		echo json_encode($resultsArray); //looks good to me.... wait
+		echo json_encode($resultsArray); 
 	}
 	break;
 		// search by name

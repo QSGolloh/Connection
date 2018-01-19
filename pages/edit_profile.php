@@ -8,22 +8,41 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="img/favicon.png">
-    <title>Clean-Note</title>
+    <title>Connect</title>
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/animate.min.css" rel="stylesheet">
-    <link href="font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/timeline.css" rel="stylesheet">
-    <script src="assets/js/jquery.1.11.1.min.js"></script>
-    <script src="bootstrap-3.3.5/js/bootstrap.min.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <link href="../bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/animate.min.css" rel="stylesheet">
+    <link href="../font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/css/timeline.css" rel="stylesheet">
+    <script src="../assets/js/jquery.1.11.1.min.js"></script>
+    <script src="../bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="animated fadeIn">
+  <body class="animated">
+  <?php // so here i included the necessary files
+  //include_once('../security/core_ini.php');
+  include_once('../controller/userprofilecontroller.php');
+  //$profile = new ProfileController();
+
+  $array = getUserById(3);
+  foreach($array as $item){
+      $firstname = $item['firstname'];
+      $lastname = $item['lastname'];
+      $gender = $item['gender'];
+      $status = $item['status'];
+      $year_group = $item['year_group'];
+      $nationality = $item['nationality'];
+      $placeofwork = $item['placeofwork'];
+      $ppic = $item['profile_pic'];
+      $encoded_image = base64_encode($ppic);
+  }
+  ?>
+
 
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top navbar-principal">
@@ -36,7 +55,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="index.html">
-            <b>Clean-Note</b>
+            <b>Connect</b>
           </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -54,7 +73,7 @@
       </div>        
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
-          <a href="profile.html">
+          <a href="profile.php">
             Hillary McBrewk
             <img src="img/Friends/woman-1.jpg" class="img-nav">
           </a>
@@ -71,10 +90,10 @@
               <li><a href="photos.html">Photos</a></li>
               <li><a href="friends.html">Friends</a></li>
               <li><a href="people_directory.html">User directory</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="edit_profile.html">Edit profile</a></li>
+              <li><a href="profile.php">Profile</a></li>
+              <li><a href="edit_profile.php">Edit profile</a></li>
               <li><a href="notifications.html">Notifications</a></li>
-              <li><a href="blank-cover.html">Blank cover</a></li>
+              <li><a href="searchpage.php">Search</a></li>
               
               <li><a href="registration_email.html">Registration email</a></li>
               <li><a href="grid_posts.html">Grid posts</a></li>
@@ -87,27 +106,100 @@
         </div>
       </div>
     </nav>
-    <div class="row text-center cover-container">
-      <a href="#">
-        <img src="img/Friends/woman-1.jpg">
-      </a>
-      <h1 class="profile-name">Hillary McBrewk</h1>
-      <p class="user-text">sharing awesome ideas with your friends, you can grow, grow fast</p>
-    </div>
 
-
-
-
+   
 
     <!-- Timeline content -->
-    <div class="container" style="margin-top:2px;">
-      <div class="profile-info col-md-10">
-        <h1 class="text-center">Put your content here</h1>
+    <div class="container" style="margin-top:50px;">
+      <div class="row">
+        <div class="col-md-10 no-paddin-xs">
+          <div class="profile-nav col-md-4">
+            <div class="panel">
+                <div class="user-heading round">
+                    <a href="#">
+                        <img src="img/Friends/woman-1.jpg" alt="">
+                    </a>
+                    <h1><? echo $firstname." ".$lastname ?></h1>
+                    <p>Email goes here</p>
+                </div>
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="profile.html"> <i class="fa fa-user"></i> Profile</a></li>
+                    <li><a href="about.html"> <i class="fa fa-info-circle"></i> About</a></li>
+                    <li><a href="friends.html"> <i class="fa fa-users"></i> Friends</a></li>
+                    <li><a href="photos.html"> <i class="fa fa-file-image-o"></i> Photos</a></li>
+                    <li class="active"><a href="edit_profile.html"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                </ul>
+            </div>
+          </div>
+
+  <?php
+  echo '<div class="profile-info col-md-8">
+            <form method="post" action="">
+              <!-- update info -->
+                <div class="panel panel-info post animated fadeInUp">
+              <div class="panel-heading">
+                <h3 class="panel-title">Edit info</h3>
+              </div>            
+              <div class="panel-body">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Last name</label>
+                  <div class="col-md-8">
+                    <input name= "lastname"  class="form-control" type="text" value= "'.$lastname.'" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Place of work</label> 
+                  <div class="col-md-8">
+                    <input name= "poWork" class="form-control" type="text" value= "'.$placeofwork.'" required>
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Profile Picture</label> 
+                  <div class="col-md-8">
+                    <input name= "ppic" class="form-control" type="text" value= "'.$ppic.'" required> 
+                  </div>
+                </div> 
+
+                <div class="form-group">
+                  <button type="submit"  name="update" class="btn btn-info" onclick="window.location.reload()">Update</button> 
+                </div> 
+              </div>
+            </div><!-- end update info-->
+            </form>';
+  ?>
+
+           
+
+            <div class="panel panel-info post panel-shadow">
+              <div class="panel-heading">
+                <h3 class="panel-title">Change password</h3>
+              </div>            
+              <div class="panel-body">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Current password</label>
+                  <div class="col-md-7">
+                    <input class="form-control" type="text" value="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">New password</label>
+                  <div class="col-md-7">
+                    <input class="form-control" type="text" value="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-info">Update</button>
+                </div>                
+              </div>
+            </div>
+          </div>
       </div>
-    </div><!-- end timeline content-->
+      </div>
+    </div><!--End Timeline content -->
 
     <!-- Online users sidebar content-->
-    <div class="chat-sidebar focus">
+   <div class="chat-sidebar focus">
       <div class="list-group text-left">
         <p class="text-center visible-xs"><a href="#" class="hide-chat">Hide</a></p> 
         <p class="text-center chat-title">Online users</p>  

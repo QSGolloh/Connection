@@ -21,29 +21,24 @@ class Login extends DatabaseConnection{
 
     function verifylogin($email, $password){
 
+      $select_query = "SELECT * FROM user WHERE email = '$email'";
+      $login_query = $this->query($select_query);
 
-        $mysql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
-        $dbquery = $this->query($mysql);
 
-        if($dbquery){
-            while($r = $this->fetch()){
-                if (password_verify($password,$r['password'])){
-                    session_start();
-                    $_SESSION['old_pass'] = $password;
-                    $_SESSION['user_id']= $r['user_id'];
-                    $_SESSION['email']=$r['email'];
-                    $_SESSION['profile_pic']=$r['profile_pic'];
-                    return 3;
-                    //header("Location:index.php");
-                }else{
-                    return 2;
-                }
-            }
-        } else{
-            return 1;
+      if ($login_query){
+        while ($row = $this->fetch()) {
+          if (md5(trim($password)) == $row['password']){
+        // start a session for the user
+            session_start();
+            $_SESSION['userid'] = $row['user_id'];
+            $_SESSION['email'] = $row['email'];
+            header('Location:../pages/edit_profile.php');
+            echo "Login successful";
+          }else {
+            echo "Login failed";
+          }
         }
+      }
     }
-
 }
-
-?>
+  

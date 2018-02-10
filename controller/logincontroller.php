@@ -14,28 +14,26 @@ if (isset($_POST['login'])){
 }
 
 function validlogin(){
-    $success = false;
+    $success = true;
     $email = "";
     $password = "";
 
     if(isset($_POST['email']) && !empty($_POST['email'])){
         $email = $_POST['email'];
-        $success= true;
     } else{
-        global $emailError;
         $emailError = "Please enter your email";
+        $success= false;
     }
 
     if (isset($_POST['password']) && !empty($_POST['password'])){
         $password = $_POST['password'];
-        $success= true;
     }else{
-        global $pwdError;
         $pwdError = "Please enter your password";
+        $success= false;
     }
 
     if($success){
-        verifyLogin($email, $password);
+       verifyLogin($email, $password);
     }
 
 
@@ -48,25 +46,8 @@ function verifyLogin($email, $password){
 
         global $status;
 
-        $login = new Login;
+        $login = new Login();
         $dbquery = $login->verifylogin($email, $password);
-        // if successful
-        if($dbquery ==3){
-            if ($_SESSION['email'] == 1){
-                header("Location:../pages/profile.php");
-            }
-        }
-
-        //if password doesnt match
-        if($dbquery ==2) {
-            $status = 2;
-        }
-
-        //if user account isnt active
-        else{
-            $status = 1;
-
-        }
     }
 
 /**a function to display error or success message upon login

@@ -31,8 +31,9 @@ USE `script`;
 
 CREATE TABLE IF NOT EXISTS `friendship` (
   `friend_id` int(11) NOT NULL AUTO_INCREMENT,
-  `receiver` varchar(30) NOT NULL,
-  `sender` varchar(30) NOT NULL,
+  `receiver_id` varchar(30) NOT NULL,
+  `sender_id` varchar(30) NOT NULL,
+  `friend_status` varchar(30) NOT NULL,
   PRIMARY KEY (`friend_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 

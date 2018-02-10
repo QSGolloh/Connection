@@ -23,13 +23,14 @@
   <![endif]-->
 </head>
 <body class="animated fadeIn">
+  <?php require_once('../classes/loadclass.php'); ?>
 
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top navbar-principal">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-              aria-expanded="false" aria-controls="navbar">
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top navbar-principal">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+        aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -40,10 +41,10 @@
       </a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <div class="col-md-5 col-sm-4">
-        <form class="navbar-form">
+     <div class="col-md-5 col-sm-4">
+     <!--   <form class="navbar-form">
           <div class="form-group" style="display:inline;">
-            <div class="input-group" style="display:table;">
+           <div class="input-group" style="display:table;">
               <form>
                 <input type="radio" name="searchTerm" value="major"> Major
                 <input type="radio" name="searchTerm" value="year"> Year
@@ -54,9 +55,10 @@
               <span class="input-group-addon" style="width:1%;">
                 <span class="glyphicon glyphicon-search" onclick="checkSearchTerm()"></span>
               </span>
+
             </div>
           </div>
-        </form>
+        </form>-->
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
@@ -69,56 +71,65 @@
         <li><a href="messages.html"><i class="fa fa-comments"></i></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-             aria-expanded="false"> Pages
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="recover_password.html">Recover password</a></li>
-            <li><a href="list_users.html">List users</a></li>
-            <li><a href="photos.html">Photos</a></li>
-            <li><a href="friends.html">Friends</a></li>
-            <li><a href="people_directory.html">User directory</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="edit_profile.html">Edit profile</a></li>
-            <li><a href="notifications.html">Notifications</a></li>
-            <li><a href="blank-cover.html">Blank cover</a></li>
+          aria-expanded="false"> Pages
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="recover_password.html">Recover password</a></li>
+          <li><a href="list_users.html">List users</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="friends.html">Friends</a></li>
+          <li><a href="people_directory.html">User directory</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="edit_profile.html">Edit profile</a></li>
+          <li><a href="notifications.html">Notifications</a></li>
+          <li><a href="blank-cover.html">Blank cover</a></li>
 
-            <li><a href="registration_email.html">Registration email</a></li>
-            <li><a href="grid_posts.html">Grid posts</a></li>
-            <li><a href="error404.html">Error 404</a></li>
-            <li><a href="error500.html">Error 500</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<div class="row text-center cover-container">
-  <div class>
-    <h1 class="profile-name">Yaay...here are your matches lol</h1>
-    <p class="user-text">Click connect and grow your network</p>
+          <li><a href="registration_email.html">Registration email</a></li>
+          <li><a href="grid_posts.html">Grid posts</a></li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </div>
+</nav>
+<div class="row cover-container">
+  <div>
+  <h1 class="profile-name">Search here </h1>
+   <select id= "year">
+    <option value="0" name="searchTerm0" >Year</option>
+    <?php loadyeargroups(); ?>
+  </select>
+  <select id = "major">
+    <option value="0" name="searchTerm1" >Course</option>
+     <?php loadAllMajor(); ?>
+  </select>
 
-  <br>
+  <input type="text" placeholder="Search Name" id="name" name="searchTerm">
+  <button type="submit" onclick="checkSearchTerm()">Search</button>
+  <p class="user-text"> Search and connect and grow your network</p>-->
+</div> 
+</div>
+
+<br>
 <!-- Timeline content -->
 <div class="container matches">
 
-<!-- search content goes here -->
-  </div>
+  <!-- search content goes here -->
+</div>
 
 
 <footer class="welcome-footer">
   <div class="container">
     <p>
-    <div class="footer-links">
-      <a href="#">Terms of Use</a> |
-      <a href="#">Privacy Policy</a> |
-      <a href="#">Developers</a> |
-      <a href="#">Contact</a> |
-      <a href="#">About</a>
-    </div>
-    Copyright &copy; Company - All rights reserved
+      <div class="footer-links">
+        <a href="#">Terms of Use</a> |
+        <a href="#">Privacy Policy</a> |
+        <a href="#">Developers</a> |
+        <a href="#">Contact</a> |
+        <a href="#">About</a>
+      </div>
+      Copyright &copy; Company - All rights reserved
     </p>
   </div>
 </footer>

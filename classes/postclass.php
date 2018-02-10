@@ -43,6 +43,6 @@ class postDetails extends DatabaseConnection
 
     	return $this->query($myQuery);
     }
-
+}
 
 ?>

@@ -39,7 +39,8 @@ class searchUser extends DatabaseConnection
      **/
     function getUserByMajor($major)
     {
-        $myQuery = "SELECT * FROM user WHERE major ='$major'"; 
+        $major = (int)$major;
+        $myQuery = "SELECT * FROM user WHERE major_id ='$major'"; 
         //execution of query
         return $this->query($myQuery);
     }
@@ -51,7 +52,8 @@ class searchUser extends DatabaseConnection
      **/
     function getUserByYeargroup($yeargroup)
     {
-        $myQuery = "SELECT * FROM user WHERE year_group ='$yeargroup'";
+        $yeargroup = (int)$yeargroup;
+        $myQuery = "SELECT * FROM user WHERE year_group_id ='$yeargroup'";
         //execution of query
         return $this->query($myQuery);
     }

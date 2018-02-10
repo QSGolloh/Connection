@@ -25,13 +25,14 @@
 </head>
 <body class="welcome-page animated fadeIn">
 <?php require_once("../controller/logincontroller.php"); ?>
+<!--
 <div class="row row-welcome">
     <div class="login-page">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <img src="../images/ashesilogo.jpeg">
                 <h1>Connect</h1>
-                <h3>Sign In</h3>
+                <h3>Sign In</h3> -->
 
                 <form method = "post" action = "">
 
@@ -48,7 +49,7 @@
                 </form>
 
 
-
+                <!--
         <div class="row">
             <div class="container">
                 <p>
@@ -62,7 +63,7 @@
                 Copyright &copy; Company - All rights reserved
                 </p>
             </div>
-        </div>
+        </div> -->
     </div>
         </div>
     </div>

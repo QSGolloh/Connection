@@ -29,10 +29,10 @@ class Registration extends DatabaseConnection
         $fname = $this->sqlinjection($fname);
         $lname = $this->sqlinjection($lname);
         $email = $this->sqlinjection($email);
-        $pword = $this->sqlinjection($pword);
+        $pword = trim($pword);
 
         //hash password for security purpose
-        $hashedpword = password_hash($pword, PASSWORD_DEFAULT);
+        $hashedpword = md5($pword);//password_hash($pword, PASSWORD_DEFAULT);
 
         //write query statement
         $queryStatement = "INSERT INTO user (firstname,lastname, email, password) VALUES ('$fname', '$lname', '$email', '$hashedpword')";

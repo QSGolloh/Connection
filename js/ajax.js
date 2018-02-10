@@ -1,28 +1,42 @@
 function checkSearchTerm() {
-    var choice = document.getElementsByName('searchTerm');
+    var name = document.getElementById('name').value;
+    var major = document.getElementById('major');
+    var majorChoice = major.options[major.selectedIndex].value;
+    var year = document.getElementById('year');
+    var yearChoice = year.options[year.selectedIndex].value;
+    if (name != ''){
+        findUserByName(name);
+    } else if (majorChoice != "0"){
+        findUserByMajor(majorChoice);
+    }else if (yearChoice != "0"){
+        findUserByYear(yearChoice);
+    }
+    /**
     //looping through all the radio buttons to see which one is checked
     for (var i = 0; i < choice.length; i++) {
         if (choice[i].checked == true) {
-            if (choice[i].value == "major") {
+            //if (choice[i].value == "major") {
+            if (choice[i].id == "major") {
                 //call major ajax
                 findUserByMajor();
-            } else if (choice[i].value == "year") {
+            } else if (choice[i].id == "year") {
                 //call year ajax
                 findUserByYear();
-            } else if (choice[i].value == "name") {
+            } else if (choice[i].id == "search") {
                 //call name ajax
-                findUserByName();
+                
             }
         } else {
 
         }
-    }
+    } */
 }
 
-function findUserByMajor() {   
+function findUserByMajor(major) {   
     $('.matches').empty();
     var divElements = "";
-    var major = document.getElementById('search').value; //getting the value from the search box
+    //var major = document.getElementById('search').value; //getting the value from the search box
+    //var major = document.getElementById('major').value;
     if (major != '') {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -42,7 +56,7 @@ function findUserByMajor() {
                             '    <div class="card-body">\n' +
                             '      <a class="card-title" href="profile.php?id='+ jsonResponse[i].user_id +'">'+ jsonResponse[i].firstname +' '+ jsonResponse[i].lastname +'</a>\n' +
                             '      <p class="card-text">' + jsonResponse[i].status +' </p>\n' +
-                            '      <a href="#" class="btn btn-primary">Connect</a>\n' +
+                            '      <a href="../controller/connectcontroller.php?rid='+jsonResponse[i].user_id+'&msg=1" class="btn btn-primary">Connect</a>\n' +
                             '    </div>\n' +
                             '  </div>';
                     }
@@ -60,10 +74,11 @@ function findUserByMajor() {
 }
 
 //function to find user by year
-function findUserByYear() {
+function findUserByYear(yeargroup) {
     $('.matches').empty();
     var divElements = "";
-    var yeargroup = document.getElementById('search').value; //getting the value from the search box
+    //var yeargroup = document.getElementById('search').value; //getting the value from the search box
+     //var yeargroup = document.getElementById('year').value;
     if (yeargroup != '') {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -83,7 +98,7 @@ function findUserByYear() {
                             '    <div class="card-body">\n' +
                             '      <a class="card-title" href="profile.php?id='+ jsonResponse[i].user_id +'">'+ jsonResponse[i].firstname +' '+ jsonResponse[i].lastname +'</a>\n' +
                             '      <p class="card-text">' + jsonResponse[i].status +' </p>\n' +
-                            '      <a href="#" class="btn btn-primary">Connect</a>\n' +
+                            '      <a href="../controller/connectcontroller.php?rid='+jsonResponse[i].user_id+'&msg=1" class="btn btn-primary">Connect</a>\n' +
                             '    </div>\n' +
                             '  </div>';
                     }
@@ -100,10 +115,10 @@ function findUserByYear() {
 }
 
 //function to find user by name
-function findUserByName() {
+function findUserByName(name) {
     $('.matches').empty();
     var divElements = "";
-    var name = document.getElementById('search').value; //getting the value from the search box
+   // var name = document.getElementById('search').value; //getting the value from the search box
     if (name != '') {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -123,7 +138,7 @@ function findUserByName() {
                             '    <div class="card-body">\n' +
                            '      <a class="card-title"href="profile.php?id='+ jsonResponse[i].user_id +'" >'+ jsonResponse[i].firstname +' '+ jsonResponse[i].lastname +'</a>\n' +
                             '      <p class="card-text">' + jsonResponse[i].status +' </p>\n' +
-                            '      <a href="#" class="btn btn-primary">Connect</a>\n' +
+                            '      <a href="../controller/connectcontroller.php?rid='+jsonResponse[i].user_id+'&msg=1" class="btn btn-primary">Connect</a>\n' +
                             '    </div>\n' +
                             '  </div>';
                     }

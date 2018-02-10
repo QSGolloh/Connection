@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,8 +28,8 @@
   //include_once('../security/core_ini.php');
   include_once('../controller/userprofilecontroller.php');
   //$profile = new ProfileController();
-
-  $array = getUserById(3);
+  //echo ;
+  $array = getUserById($_SESSION['userid']);
   foreach($array as $item){
       $firstname = $item['firstname'];
       $lastname = $item['lastname'];
@@ -39,7 +39,7 @@
       $nationality = $item['nationality'];
       $placeofwork = $item['placeofwork'];
       $ppic = $item['profile_pic'];
-      $encoded_image = base64_encode($ppic);
+     // $encoded_image = base64_encode($ppic);
   }
   ?>
 
@@ -74,7 +74,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
           <a href="profile.php">
-            Hillary McBrewk
+            <? echo $firstname." ".$lastname ?>
             <img src="img/Friends/woman-1.jpg" class="img-nav">
           </a>
         </li>
@@ -105,7 +105,7 @@
       </ul>
         </div>
       </div>
-    </nav>
+    </nav> 
 
    
 
@@ -121,6 +121,7 @@
                     </a>
                     <h1><? echo $firstname." ".$lastname ?></h1>
                     <p>Email goes here</p>
+             
                 </div>
 
                 <ul class="nav nav-pills nav-stacked">
@@ -135,7 +136,7 @@
 
   <?php
   echo '<div class="profile-info col-md-8">
-            <form method="post" action="">
+            <form method="post" action="" enctype="multipart/form-data">
               <!-- update info -->
                 <div class="panel panel-info post animated fadeInUp">
               <div class="panel-heading">
@@ -157,7 +158,10 @@
                 <div class="form-group">
                   <label class="col-md-3 control-label">Profile Picture</label> 
                   <div class="col-md-8">
-                    <input name= "ppic" class="form-control" type="text" value= "'.$ppic.'" required> 
+      
+                   <input type="file" name="images" class="form-control" accept="image/*" required>
+                  
+                   <!-- <input name= "ppic" class="form-control" type="text" value= "'.$ppic.'" required> -->
                   </div>
                 </div> 
 

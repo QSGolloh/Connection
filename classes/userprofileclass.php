@@ -27,24 +27,24 @@ class profile extends DatabaseConnection
 
 
     function editprofile($user_id, $lname, $poWork, $ppic){
-        $misql = ''; 
+        // $misql = ''; 
 
-        if ($ppic == "none"){
-            $misql= "UPDATE user
-            SET 
-            lastname = '$lname', 
-            placeofwork = '$poWork'
-            WHERE user_id = '$user_id'";
-        }
+        // if ($ppic == "none"){
+        //     $misql= "UPDATE user
+        //     SET 
+        //     lastname = '$lname', 
+        //     placeofwork = '$poWork'
+        //     WHERE user_id = '$user_id'";
+        // }
 
-        else {
+        // else {
             $misql= "UPDATE user
             SET
             lastname = '$lname', 
             placeofwork = '$poWork',
             profile_pic = '$ppic'
             WHERE user_id = '$user_id'";
-        }
+        //}
         return $this->query($misql);
 
     }

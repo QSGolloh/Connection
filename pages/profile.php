@@ -27,6 +27,7 @@
       <?php // so here i included the necessary files 
       include_once('../security/core_ini.php'); 
       include_once('../controller/userprofilecontroller.php');
+      include_once('../classes/loadclass.php');
       $id;
       if(isset($_GET['id'])){
           $id = $_GET['id'];
@@ -38,7 +39,8 @@
                 $lastname = $item['lastname'];
                 $gender = $item['gender'];
                 $status = $item['status'];
-                $year_group = $item['year_group'];
+                $year_group = $item['year_group_id']; //change year group to string
+                $year_group = getYearGroup($year_group);
                 $nationality = $item['nationality'];
                 $placeofwork = $item['placeofwork'];
                 $ppic = $item['profile_pic']; 

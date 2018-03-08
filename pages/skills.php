@@ -1,4 +1,4 @@
-<!--<?php //session_start(); ?> -->
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -121,7 +121,7 @@
 
         <div class="profile-info col-md-8">
 
-              <form method = "post" action = "">
+              <form method = "post" action = "../processes.php">
 
                <h3>Other Skills</h3>
               <div class="form-content"> 
@@ -131,9 +131,9 @@
               </div>
 
               <br> 
-              <button name="back" type="submit" class="btn btn-info btn-lg">Back</button>
-              <button name="save" type="submit" class="btn btn-info btn-lg">Save Changes</button>
-              <button name="submit" type="submit" class="btn btn-info btn-lg">Next</button>
+              <button name="skillback" type="submit" class="btn btn-info btn-lg">Back</button>
+              <button name="skillsave" type="submit" class="btn btn-info btn-lg">Save Changes</button>
+              <button name="skillnext" type="submit" class="btn btn-info btn-lg">Next</button>
             </form> 
 
           </div>

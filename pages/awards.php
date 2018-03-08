@@ -1,4 +1,4 @@
-<!--<?php //session_start(); ?> -->
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,8 +117,7 @@
         </div>
 
         <div class="profile-info col-md-8">
-        <form method = "post" action = "">
-
+        <form method = "post" action = "../processes.php">
          <h3>Achievements and Awards</h3>
          <div class="form-content"> 
           <div class="form-group"> 
@@ -133,8 +132,9 @@
         </div>
 
         <br> 
-        <button name="back" type="submit" class="btn btn-info btn-lg">Back</button>
-        <button name="submit" type="submit" class="btn btn-info btn-lg">Done</button>
+        <button name="awardback" type="submit" class="btn btn-info btn-lg">Back</button>
+        <button name="awardsave" type="submit" class="btn btn-info btn-lg">Save</button>
+        <button name="awardnext" type="submit" class="btn btn-info btn-lg">Next</button>
       </form> 
 
     </div> <!--div for test row-->

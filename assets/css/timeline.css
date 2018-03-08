@@ -1615,3 +1615,10 @@ a:hover, a:active, a:focus {
 .container-timeline{
   min-height: 490px;
 }
+
+
+/*.col-centered {
+  float: none;
+  margin-right: auto;
+  margin-left: auto;
+}*/

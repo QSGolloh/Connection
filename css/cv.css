@@ -1,0 +1,35 @@
+/* Code to align details in cv */
+
+
+#h{
+
+	font-size: 19.2px;
+	font-family: Verdana;
+}
+
+/*h1{
+	font-size: 19.2px;
+	font-family: Verdana;
+	
+}*/
+
+p{
+	font-size: 16px;
+	font-family: Verdana;
+}
+
+
+div.header-row{
+	text-align: center;
+}
+
+hr {
+  border: 0;
+  color: black;
+background-color: black;
+height: 2px;
+}
+
+div.col-md-3 {
+	text-align: right;
+}

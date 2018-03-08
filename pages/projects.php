@@ -1,4 +1,4 @@
-<!--<?php //session_start(); ?> -->
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,7 +117,7 @@
         </div>
 
         <div class="profile-info col-md-8">
-        <form method = "post" action = "">
+        <form method = "post" action = "../processes.php">
 
          <h3>Projects and Research</h3>
          <div class="form-content"> 
@@ -125,21 +125,22 @@
                   <input type="text" name = "name" class="form-control input-underline input-lg" placeholder="Project / Research Name">
                 </div> 
                 <div class="form-group"> 
-                  <input type="text" name= "loc1" class="form-control input-underline input-lg" placeholder="Location">
+                  <input type="text" name= "locate" class="form-control input-underline input-lg" placeholder="Location">
                 </div>  
                 <div class="form-group"> 
-                  <input type="text" name = "jobtitle1" class="form-control input-underline input-lg" placeholder="Job Title">
+                  <input type="text" name = "projtitle" class="form-control input-underline input-lg" placeholder="Job Title">
                 </div>  
                 <div class="form-group"> 
-                  <textarea rows="4" cols="82" class="form-control input-underline input-lg" name="description1" id="description" placeholder=" Tasks Performed "></textarea>
+                  <textarea rows="4" cols="82" class="form-control input-underline input-lg" name="descrip" id="description" placeholder=" Tasks Performed "></textarea>
                 </div>  
                 <div class="form-group"> 
-                  <input type="text" name = "date1" class="form-control input-underline input-lg" placeholder="Time period">
+                  <input type="text" name = "date2" class="form-control input-underline input-lg" placeholder="Time period">
                 </div>  <br> 
 
         <br> 
-        <button name="back" type="submit" class="btn btn-info btn-lg">Back</button>
-        <button name="submit" type="submit" class="btn btn-info btn-lg">Done</button>
+        <a href ="workexperience.php"><button name="project_back" type="submit" class="btn btn-info btn-lg">Back</button></a> 
+        <button name="project_save" type="submit" class="btn btn-info btn-lg">Save Changes</button>
+        <button name="project_next" type="submit" class="btn btn-info btn-lg">Next</button>
       </form> 
 
     </div> <!--div for test row-->

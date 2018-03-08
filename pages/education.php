@@ -1,4 +1,4 @@
-<!--<?php //session_start(); ?> -->
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -144,38 +144,6 @@
                 </div> 
 
                 <h4><a href="add-new-form">ADD NEW FIELD +</a></h4> <br>
-
-<!-- 
-                <h5>School 2 details</h5> 
-                <div class="form-group"> 
-                  <input type="text" name = "sch2" class="form-control input-underline input-lg" placeholder="School">
-                </div> 
-                <div class="form-group"> 
-                  <input type="text" name= "major2" class="form-control input-underline input-lg" placeholder="Programme">
-                </div>  
-                <div class="form-group"> 
-                  <input type="text" name = "location2" class="form-control input-underline input-lg" placeholder="Location">
-                </div> 
-                <div class="form-group"> 
-                  <input type="text" name = "year2" class="form-control input-underline input-lg" placeholder="Date">
-                </div> 
-
-                 <h5>School 3 details</h5> 
-                <div class="form-group"> 
-                  <input type="text" name = "sch3" class="form-control input-underline input-lg" placeholder="University">
-                </div> 
-                <div class="form-group"> 
-                  <input type="text" name= "major3" class="form-control input-underline input-lg" placeholder="Major">
-                </div>  
-                <div class="form-group"> 
-                  <input type="text" name = "location3" class="form-control input-underline input-lg" placeholder="Location">
-                </div> 
-                <div class="form-group"> 
-                  <input type="text" name = "year3" class="form-control input-underline input-lg" placeholder="Date">
-                </div>  -->
-
-            
-
     
               <button name="education_back" type="submit" class="btn btn-info btn-lg">Back</button>
               <button name="edu_save" type="submit" class="btn btn-info btn-lg">Save Changes</button>

@@ -1,4 +1,4 @@
-<!--<?php //session_start(); ?> -->
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -118,25 +118,28 @@
             </div>
           </div>
             <div class="profile-info col-md-8">
-              <form method = "post" action = "">
+              <form method = "post" action = "../processes.php">
 
                <h3> Co-curricular Activities</h3>
                 <div class="form-group"> 
                   <input type="text" name = "activity" class="form-control input-underline input-lg" placeholder="Activity Name">
                 </div>
                 <div class="form-group"> 
-                  <input type="text" name = "jobtitle1" class="form-control input-underline input-lg" placeholder="Job Title">
+                  <input type="text" name = "loct" class="form-control input-underline input-lg" placeholder="Location">
+                </div>
+                <div class="form-group"> 
+                  <input type="text" name = "jobtit" class="form-control input-underline input-lg" placeholder="Job Title">
                 </div>  
                 <div class="form-group"> 
-                  <textarea rows="4" cols="82" class="form-control input-underline input-lg" name="description1" id="description" placeholder=" Tasks Performed "></textarea>
+                  <textarea rows="4" cols="82" class="form-control input-underline input-lg" name="descri1" id="description" placeholder=" Tasks Performed "></textarea>
                 </div>  
                 <div class="form-group"> 
-                  <input type="text" name = "date1" class="form-control input-underline input-lg" placeholder="Time period">
+                  <input type="text" name = "dateperiod" class="form-control input-underline input-lg" placeholder="Time period">
                 </div>  
              <br> 
-              <button name="back" type="submit" class="btn btn-info btn-lg">Back</button>
-              <button name="save" type="submit" class="btn btn-info btn-lg">Save Changes</button>
-              <button name="submit" type="submit" class="btn btn-info btn-lg">Next</button>
+                <button name="coback" type="submit" class="btn btn-info btn-lg">Back</button>
+                <button name="cosave" type="submit" class="btn btn-info btn-lg">Save</button>
+                <button name="conext" type="submit" class="btn btn-info btn-lg">Next</button>
             </form> 
               </div>
 

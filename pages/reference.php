@@ -1,4 +1,4 @@
-<!--<?php //session_start(); ?> -->
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,24 +119,20 @@
         </div>
 
         <div class="profile-info col-md-8">
-        <form method = "post" action = "">
+        <form method = "post" action = "../processes.php">
 
          <h3>References</h3>
          <div class="form-content"> 
+           
           <div class="form-group"> 
-            <input type="text" name = "ref1" class="form-control input-underline input-lg" placeholder="Reference 1">
+          <textarea rows="4" cols="82" class="form-control input-underline input-lg" name = "ref1" id="description" placeholder=" Tasks Performed "></textarea>
           </div> 
-          <div class="form-group"> 
-            <input type="text" name= "ref2" class="form-control input-underline input-lg" placeholder="Reference 2">
-          </div>  
-          <div class="form-group"> 
-            <input type="text" name = "ref3" class="form-control input-underline input-lg" placeholder="Reference 3">
-          </div>  
+          
         </div>
 
         <br> 
-        <button name="back" type="submit" class="btn btn-info btn-lg">Back</button>
-        <button name="submit" type="submit" class="btn btn-info btn-lg">Done</button>
+        <button name="refback" type="submit" class="btn btn-info btn-lg">Back</button>
+        <button name="refdone" type="submit" class="btn btn-info btn-lg">Done</button>
       </form> 
 
     </div> <!--div for test row-->

@@ -1,4 +1,4 @@
-<!--<?php //session_start(); ?> -->
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -125,9 +125,10 @@
 
            <div class="profile-info col-md-8">
 
-              <form method = "post" action = "">
+              <form method = "post" action = "../processes.php">
 
               <h3> Work Experience</h3>
+              <h6 style="color:red">List your work experience in reverse chronological order, most recent first followed by others in the past</h6><br>
               <h5>Company 1</h5> 
               <div class="form-content"> <!--Beginning of Work Experience -->
               
@@ -150,65 +151,9 @@
 
                 <h4><a href="add-new-form">ADD NEW FIELD +</a></h4> <br>
 
-<!-- 
-                <h5>Company 2</h5> 
-                <div class="form-group"> 
-                  <input type="text" name = "company2" class="form-control input-underline input-lg" placeholder="Company Name">
-                </div> 
-                <div class="form-group"> 
-                  <input type="text" name= "loc2" class="form-control input-underline input-lg" placeholder="Location">
-                </div>  
-                <div class="form-group"> 
-                  <input type="text" name = "jobtitle2" class="form-control input-underline input-lg" placeholder="Job Title">
-                </div>  
-               <div class="form-group"> 
-                  <textarea rows="4" cols="82" class="form-control input-underline input-lg" name="description2" id="description2" placeholder=" Tasks Performed "></textarea>
-                </div>   
-                <div class="form-group"> 
-                  <input type="text" name = "date2" class="form-control input-underline input-lg" placeholder="Time period">
-                </div>  <br> 
-
- --><!-- 
-                <h5>Company 3</h5> 
-                <div class="form-group"> 
-                  <input type="text" name = "company3" class="form-control input-underline input-lg" placeholder="Company Name">
-                </div> 
-                <div class="form-group"> 
-                  <input type="text" name= "loc3" class="form-control input-underline input-lg" placeholder="Location">
-                </div>  
-                <div class="form-group"> 
-                  <input type="text" name = "jobtitle3" class="form-control input-underline input-lg" placeholder="Job Title">
-                </div>  
-                <div class="form-group"> 
-                  <textarea rows="4" cols="82" class="form-control input-underline input-lg" name="description3" id="description3" placeholder=" Tasks Performed "></textarea>
-                </div>   
-                <div class="form-group"> 
-                  <input type="text" name = "date3" class="form-control input-underline input-lg" placeholder="Time period">
-                </div>  <br> 
-
- -->
-                <!-- h5>Company 4</h5> 
-                <div class="form-group"> 
-                  <input type="text" name = "company1" class="form-control input-underline input-lg" placeholder="Company Name">
-                </div> 
-                <div class="form-group"> 
-                  <input type="text" name= "loc1" class="form-control input-underline input-lg" placeholder="Location">
-                </div>  
-                <div class="form-group"> 
-                  <input type="text" name = "jobtitle1" class="form-control input-underline input-lg" placeholder="Job Title">
-                </div>  
-                <div class="form-group"> 
-                  <textarea rows="4" cols="82" class="form-control input-underline input-lg" name="description4" id="description4" placeholder=" Tasks Performed "></textarea>
-                </div>  
-                <div class="form-group"> 
-                  <input type="text" name = "date1" class="form-control input-underline input-lg" placeholder="Time period">
-                </div>  
-
-                     <br>  -->
-
-              <button name="back" type="submit" class="btn btn-info btn-lg">Back</button>
-              <button name="save" type="submit" class="btn btn-info btn-lg">Save Changes</button>
-              <button name="submit" type="submit" class="btn btn-info btn-lg">Next</button>
+              <button name="workback" type="submit" class="btn btn-info btn-lg">Back</button>
+              <button name="worksave" type="submit" class="btn btn-info btn-lg">Save Changes</button>
+              <button name="worknext" type="submit" class="btn btn-info btn-lg">Next</button>
             </form> 
                   
 

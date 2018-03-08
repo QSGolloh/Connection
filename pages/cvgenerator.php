@@ -1,4 +1,4 @@
-<!--<?php //session_start(); ?> -->
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +43,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
       <div class="col-md-5 col-sm-4">         
-       <form class="navbar-form">
+    <!--    <form class="navbar-form">
           <div class="form-group" style="display:inline;">
             <div class="input-group" style="display:table;">
               <input class="form-control" name="search" placeholder="Search..." autocomplete="off" type="text">
@@ -52,13 +52,13 @@
               </span>
             </div>
           </div>
-        </form>
+        </form> -->
       </div>        
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
           <a href="profile.php">
          <!--  <? // echo $firstname." ".$lastname ?>-->
-            <img src="img/Friends/woman-1.jpg" class="img-nav">
+            <img src="../img/Friends/doe.png" class="img-nav">
           </a>
         </li>
         <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
@@ -84,7 +84,7 @@
               <li><a href="error500.html">Error 500</a></li>
             </ul>
         </li>
-        <li><a href="#" class="nav-controller"><i class="fa fa-user"></i>Users</a></li>       
+        <li><a href="../logout.php" class="nav-controller">Logout</a></li>       
       </ul>
         </div>
       </div>
@@ -100,7 +100,7 @@
             <div class="panel">
                 <div class="user-heading round">
                     <a href="#">
-                        <img src="img/Friends/woman-1.jpg" alt="">
+                        <img src="../img/Friends/doe.png" alt="">
                     </a>
                     <h1><!--<? //echo $firstname." ".$lastname ?>--></h1>
                     <p>Email goes here</p>
@@ -126,9 +126,7 @@
                 <div class="form-group"> 
                   <input type="text" name= "fname" class="form-control input-underline input-lg" placeholder="Full Name">
                 </div>  
-                <!-- <div class="form-group"> 
-                  <input type="text" name = "lname" class="form-control input-underline input-lg" placeholder="Last Name">
-                </div> --> 
+        
                 <div class="form-group"> 
                 <input type="text" name = "address" class="form-control input-underline input-lg" placeholder="Postal Address">
                 </div> 

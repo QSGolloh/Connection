@@ -1,4 +1,4 @@
-
+<?php    session_start();?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,22 +44,16 @@
     			<div class="col-md-5 col-sm-4">         
     			 <form class="navbar-form">
     			    <div class="form-group" style="display:inline;">
-    			  <!--    <div class="input-group" style="display:table;">
-    			        <input class="form-control" name="search" placeholder="Search..." autocomplete="off" type="text">
-    			        <span class="input-group-addon" style="width:1%;">
-    			          <span class="glyphicon glyphicon-search"></span>
-    			        </span>
-    			      </div>-->
     			    </div>
     			  </form>
     			</div>        
       <ul class="nav navbar-nav navbar-right">
-        <li>
+       <!--  <li>
           <a href="profile.html">
             Logged in user
-            <img src="img/Friends/woman-1.jpg" class="img-nav">
+            <img src="../img/Friends/woman-1.jpg" class="img-nav">
           </a>
-        </li>
+        </li> -->
         <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
         <li class="active"><a href="messages.html"><i class="fa fa-comments"></i></a></li>
         <li class="dropdown">
@@ -80,7 +74,7 @@
               <li><a href="grid_posts.html">Grid posts</a></li>
             </ul>
         </li>
-        <li><a href="#" class="nav-controller"><i class="fa fa-user"></i>Users</a></li>       
+        <li><a href="../logout.php" class="nav-controller"></i>Logout</a></li>       
       </ul>
         </div>
       </div>
@@ -98,204 +92,69 @@
                 
               </div>
               <ul class="friend-list">
-                  <li class="active bounceInDown">
+                 <?php 
+                 // code to derive users friends from database 
+                   require_once("../database/dbconnectclass.php");
+                   $load = new DatabaseConnection();
+                   $userid = $_SESSION['userid'];
+                   $process_query = $load->query("SELECT user.email as email, user.firstname as firstname, user.user_id as id, user.lastname as lastname FROM user
+                    INNER JOIN  friendship 
+                    on user.user_id = friendship.sender_id
+                    WHERE friend_status = 'accepted' AND receiver_id=$userid");           
+                   if($process_query){
+                    $data = array();
+                    while($row = $load->fetch()){
+                      $data[] = $row;
+                    }
+                  }
+
+                 ?>
+                 <!-- code to display list of friends to chat with -->
+                 <?php foreach ($data as $value) :?>
+                   <li class="active bounceInDown users" data-id="<?php echo $value['id']?>">
                     <a href="#" class="clearfix">
-                      <img src="img/Friends/guy-2.jpg" alt="" class="img-circle">
+                      <img src="../img/Friends/doe.png" alt="" class="img-circle">
                       <div class="friend-name"> 
-                        <strong>John Doe</strong>
+                        <strong><?php echo $value['firstname'] .' '. $value['lastname'] ?> </strong>
                       </div>
-                      <div class="last-message text-muted">Hello, Are you there?</div>
-                      <small class="time text-muted">Just now</small>
-                      <small class="chat-alert label label-danger">1</small>
                     </a>
                   </li>
-              <!--<li>
-                    <a href="#" class="clearfix">
-                      <img src="img/Friends/woman-10.jpg" alt="" class="img-circle">
-                      <div class="friend-name"> 
-                        <strong>Jane Doe</strong>
-                      </div>
-                      <div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                      <small class="time text-muted">5 mins ago</small>
-                    <small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
-                    </a>
-                  </li> 
-                  <li>
-                    <a href="#" class="clearfix">
-                      <img src="img/Friends/woman-3.jpg" alt="" class="img-circle">
-                      <div class="friend-name"> 
-                        <strong>Kate Doe</strong>
-                      </div>
-                      <div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                      <small class="time text-muted">Yesterday</small>
-                      <small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                    </a>
-                  </li>  
-                  <li>
-                    <a href="#" class="clearfix">
-                      <img src="img/Friends/woman-4.jpg" alt="" class="img-circle">
-                      <div class="friend-name"> 
-                        <strong>Martha Doe</strong>
-                      </div>
-                      <div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                      <small class="time text-muted">Yesterday</small>
-                      <small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                    </a>
-                  </li>     
-                  <li>
-                    <a href="#" class="clearfix">
-                      <img src="img/Friends/woman-5.jpg" alt="" class="img-circle">
-                      <div class="friend-name"> 
-                        <strong>Katherin Doe</strong>
-                      </div>
-                      <div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                      <small class="time text-muted">Yesterday</small>
-                      <small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                    </a>
-                  </li>        
-                  <li>
-                    <a href="#" class="clearfix">
-                      <img src="img/Friends/woman-6.jpg" alt="" class="img-circle">
-                      <div class="friend-name"> 
-                        <strong>Camila crut</strong>
-                      </div>
-                      <div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                      <small class="time text-muted">Yesterday</small>
-                      <small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                    </a>
-                  </li>          
-                  <li>
-                    <a href="#" class="clearfix">
-                      <img src="img/Friends/woman-7.jpg" alt="" class="img-circle">
-                      <div class="friend-name"> 
-                        <strong>Marian Grey</strong>
-                      </div>
-                      <div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                      <small class="time text-muted">Yesterday</small>
-                      <small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                    </a>
-                  </li>
-                  <li>
-                      <a href="#" class="clearfix">
-                      <img src="img/Friends/woman-8.jpg" alt="" class="img-circle">
-                      <div class="friend-name"> 
-                        <strong>Jane Doe</strong>
-                      </div>
-                      <div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                      <small class="time text-muted">5 mins ago</small>
-                    <small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
-                    </a>
-                  </li>  -->               
-              </ul><!-- end member list -->
+                  <?php endforeach; ?>  
+              </ul>
             </div>
 
             <!-- selected chat content -->
             <div class="col-md-8 bg-white ">
               <div class="chat-message">
                   <ul class="chat">
+                    
                       <li class="left clearfix">
-                        <span class="chat-img pull-left">
-                          <img src="img/Friends/guy-2.jpg" alt="User Avatar">
-                        </span>
                         <div class="chat-body clearfix">
                           <div class="header">
                             <strong class="primary-font">John Doe</strong>
                             <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
                           </div>
                           <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            how are you?
                           </p>
                         </div>
                       </li>
                       <li class="right clearfix">
-                        <span class="chat-img pull-right">
-                          <img src="img/Friends/guy-3.jpg" alt="User Avatar">
-                        </span>
                         <div class="chat-body clearfix">
                           <div class="header">
                             <strong class="primary-font">Sarah</strong>
                             <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
                           </div>
                           <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. 
+                            God is good. Forever great.
                           </p>
                         </div>
-                      </li>
-                      <li class="left clearfix">
-                          <span class="chat-img pull-left">
-                          <img src="img/Friends/guy-2.jpg" alt="User Avatar">
-                        </span>
-                        <div class="chat-body clearfix">
-                          <div class="header">
-                            <strong class="primary-font">John Doe</strong>
-                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
-                          </div>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                          </p>
-                        </div>
-                      </li>
-                      <li class="right clearfix">
-                          <span class="chat-img pull-right">
-                          <img src="img/Friends/guy-3.jpg" alt="User Avatar">
-                        </span>
-                        <div class="chat-body clearfix">
-                          <div class="header">
-                            <strong class="primary-font">Sarah</strong>
-                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
-                          </div>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. 
-                          </p>
-                        </div>
-                      </li>                    
-                      <li class="left clearfix">
-                          <span class="chat-img pull-left">
-                          <img src="img/Friends/guy-2.jpg" alt="User Avatar">
-                        </span>
-                        <div class="chat-body clearfix">
-                          <div class="header">
-                            <strong class="primary-font">John Doe</strong>
-                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
-                          </div>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                          </p>
-                        </div>
-                      </li>
-                      <li class="right clearfix">
-                          <span class="chat-img pull-right">
-                          <img src="img/Friends/guy-3.jpg" alt="User Avatar">
-                        </span>
-                        <div class="chat-body clearfix">
-                          <div class="header">
-                            <strong class="primary-font">Sarah</strong>
-                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
-                          </div>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. 
-                          </p>
-                        </div>
-                      </li>
-                      <li class="right clearfix">
-                          <span class="chat-img pull-right">
-                          <img src="img/Friends/guy-3.jpg" alt="User Avatar">
-                        </span>
-                        <div class="chat-body clearfix">
-                          <div class="header">
-                            <strong class="primary-font">Sarah</strong>
-                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
-                          </div>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. 
-                          </p>
-                        </div>
-                      </li>                    
+                      </li> 
                   </ul>
               </div>
               <div class="panel profile-info panel-info">
                 <form action="../messageprocess.php" method="post">
-                    <textarea class="form-control input-lg p-text-area" rows="3" name= "message" placeholder="Write a message..."></textarea>
+                    <textarea class="form-control input-lg p-text-area" rows="3" name= "message" placeholder="Write a message..." id="message"></textarea>
                
                 <div class="panel-footer">
                     <input class="btn btn-info pull-right" name ="send" type="submit" value="Send">
@@ -314,73 +173,41 @@
       </div>
     </div>
     
-    <!-- Online users sidebar content-->
-   <!-- <div class="chat-sidebar focus">
-      <div class="list-group text-left">
-        <p class="text-center visible-xs"><a href="#" class="hide-chat">Hide</a></p> 
-        <p class="text-center chat-title">Online users</p>  
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/guy-2.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Jeferh Smith</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-times-circle absent-status"></i>
-          <img src="img/Friends/woman-1.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Dapibus acatar</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/guy-3.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Antony andrew lobghi</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-2.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Maria fernanda coronel</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/guy-4.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Markton contz</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-times-circle absent-status"></i>
-          <img src="img/Friends/woman-3.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Martha creaw</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-times-circle absent-status"></i>
-          <img src="img/Friends/woman-8.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Yira Cartmen</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-4.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Jhoanath matew</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-5.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Ryanah Haywofd</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-9.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Linda palma</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-10.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Andrea ramos</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/child-1.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Dora ty bluekl</span>
-        </a>        
-      </div>
-    </div> --> <!-- Online users sidebar content-->
+
+    <script type="text/javascript">
+    function sendMessage(){
+        let output = '';
+        let placeholder = document.querySelector(".searchResult");
+        let message = document.querySelector("#message").value;
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "./sendMessage.php?message="+message, true);
+        xhr.onreadystatechange = function() {
+          if(xhr.readyState == 4 && xhr.status == 200) {
+              var result = JSON.parse(this.responseText);
+              if(result.length > 0){
+              result.forEach(function(elem){
+                  output += `<li class="list-item block"><a href="<?php echo BASE_URL?>topic.php?topic=${elem.id}">
+                  ${elem.title}</a></li>`;
+              })
+            }else{
+              output = `<h1>No Result match your query</h1>`
+            }
+              placeholder.innerHTML = output;
+               $("#myModal").modal();
+          }
+        }
+        xhr.send();
+      }
+
+
+
+      //code to get user by clicking 
+      $(".users").click(function(e){
+        alert($(this).data('id'));
+      });
+
+    </script>
 
 
     <footer class="welcome-footer">

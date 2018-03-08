@@ -1,3 +1,4 @@
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,8 +95,8 @@
 </div>
 </nav>
 <div class="row cover-container">
-  <div>
-  <h1 class="profile-name">Search here </h1>
+  <div class="col-centered">
+  <h2 style="color:white">Search here </h2>
    <select id= "year">
     <option value="0" name="searchTerm0" >Year</option>
     <?php loadyeargroups(); ?>
@@ -107,7 +108,7 @@
 
   <input type="text" placeholder="Search Name" id="name" name="searchTerm">
   <button type="submit" onclick="checkSearchTerm()">Search</button>
-  <p class="user-text"> Search and connect and grow your network</p>-->
+  <p class="user-text"> Search, connect and grow your network</p>-->
 </div> 
 </div>
 

@@ -22,50 +22,39 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body class="welcome-page animated fadeIn">
-<?php require_once("../controller/logincontroller.php"); ?>
+    <?php require_once("../controller/logincontroller.php"); ?>
 
-<div class="row row-welcome">
-    <div class="login-page">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <img src="../images/ashesilogo.jpeg">
-                <h1>Connect</h1>
-                <h3>Sign In</h3> 
+    <div class="row row-welcome">
+        <div class="login-page">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <img src="../images/logoash.png">
+                    <h1 style= "color:#B22222;">Connect</h1>
+                    <h3 style= "color:#B22222;">Sign In</h3> 
+                     <?php loginstatus(); ?>
 
-                <form method = "post" action = "">
+                    <form method = "post" action = "">
 
-                  <div class="form-content">
-                    <div class="form-group">
-                      <input type="text" name = "email" class="form-control input-underline input-lg" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" name = "password" class="form-control input-underline input-lg" placeholder="Password">
-                    </div>
+                      <div class="form-content">
+                        <div class="form-group">
+                          <input type="text" name = "email" class="form-control input-underline input-lg" placeholder="Email">
+          
+                      </div>
+                      <div class="form-group">
+                          <input type="password" name = "password" class="form-control input-underline input-lg" placeholder="Password">
+                        
+                      </div>
                   </div>
-                    <button name="login" type="submit" class="btn btn-info btn-lg">Log in</button>
-                  <a href="index.php" style = "color: white;">Register</a>
-                </form>
+                  <button name="login" type="submit" class="btn btn-info btn-lg">Log in</button>
+                  
+              </form><br>
+              <a href="index.php" style = "color: firebrick;">Register</a>
 
-
-                
-        <div class="row">
-            <div class="container">
-                <p>
-                <div class="footer-links">
-                    <a href="#">Terms of Use</a> |
-                    <a href="#">Privacy Policy</a> |
-                    <a href="#">Developers</a> |
-                    <a href="#">Contact</a> |
-                    <a href="#">About</a>
-                </div>
-                Copyright &copy; Company - All rights reserved
-                </p>
-            </div>
-        </div> 
-    </div>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 </div>
 </body>
 </html>

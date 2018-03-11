@@ -26,21 +26,17 @@ class profile extends DatabaseConnection
     } 
 
 
-    function editprofile($user_id, $lname, $poWork, $ppic){
-        // $misql = ''; 
-
-        // if ($ppic == "none"){
-        //     $misql= "UPDATE user
-        //     SET 
-        //     lastname = '$lname', 
-        //     placeofwork = '$poWork'
-        //     WHERE user_id = '$user_id'";
-        // }
-
-        // else {
+    function editprofile($user_id, $lname, $gender,$status, $major, $year_group, 
+      $nationality, $poWork, $ppic){
+     
             $misql= "UPDATE user
             SET
             lastname = '$lname', 
+            gender = '$gender',
+            status = '$status',
+            major_id ='$major',
+            year_group_id = '$year_group',
+            nationality = '$nationality',
             placeofwork = '$poWork',
             profile_pic = '$ppic'
             WHERE user_id = '$user_id'";

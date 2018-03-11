@@ -24,18 +24,18 @@
     <![endif]-->
   </head>
   <body class="animated">
-  <?php // so here i included the necessary files
-  //include_once('../security/core_ini.php');
+  <?php 
+  require_once('../classes/loadclass.php'); 
   include_once('../controller/userprofilecontroller.php');
-  //$profile = new ProfileController();
-  //echo ;
+  
   $array = getUserById($_SESSION['userid']);
   foreach($array as $item){
       $firstname = $item['firstname'];
       $lastname = $item['lastname'];
+      $email =$item['email'];
       $gender = $item['gender'];
       $status = $item['status'];
-      $year_group = $item['year_group'];
+      $year_group = $item['year_group_id'];
       $nationality = $item['nationality'];
       $placeofwork = $item['placeofwork'];
       $ppic = $item['profile_pic'];
@@ -75,7 +75,7 @@
         <li class="active">
           <a href="profile.php">
             <? echo $firstname." ".$lastname ?>
-            <img src="img/Friends/woman-1.jpg" class="img-nav">
+            <img src="<? echo $ppic ?>" class="img-nav">
           </a>
         </li>
         <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
@@ -85,23 +85,18 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+              <li><a href="searchpage.php">Search</a></li>
+              <li><a href="cvgenerator.php">CV</a></li>  
               <li><a href="recover_password.html">Recover password</a></li>
-              <li><a href="list_users.html">List users</a></li>
               <li><a href="photos.html">Photos</a></li>
               <li><a href="friends.html">Friends</a></li>
-              <li><a href="people_directory.html">User directory</a></li>
               <li><a href="profile.php">Profile</a></li>
               <li><a href="edit_profile.php">Edit profile</a></li>
               <li><a href="notifications.html">Notifications</a></li>
-              <li><a href="searchpage.php">Search</a></li>
-              
-              <li><a href="registration_email.html">Registration email</a></li>
-              <li><a href="grid_posts.html">Grid posts</a></li>
-              <li><a href="error404.html">Error 404</a></li>
-              <li><a href="error500.html">Error 500</a></li>
+                     
             </ul>
         </li>
-        <li><a href="#" class="nav-controller"><i class="fa fa-user"></i>Users</a></li>       
+        <li><a href="../logout.php" class="nav-controller"></i>Logout</a></li>       
       </ul>
         </div>
       </div>
@@ -117,18 +112,18 @@
             <div class="panel">
                 <div class="user-heading round">
                     <a href="#">
-                        <img src="img/Friends/woman-1.jpg" alt="">
+                        <img src="<? echo $ppic ?>" alt="">
                     </a>
                     <h1><? echo $firstname." ".$lastname ?></h1>
-                    <p>Email goes here</p>
+                    <p><? echo $email ?></p>
              
                 </div>
 
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="profile.html"> <i class="fa fa-user"></i> Profile</a></li>
-                    <li><a href="about.html"> <i class="fa fa-info-circle"></i> About</a></li>
+                    <li><a href="profile.php"> <i class="fa fa-user"></i> Profile</a></li>
+                    <!-- <li><a href="about.html"> <i class="fa fa-info-circle"></i> About</a></li> -->
                     <li><a href="friends.html"> <i class="fa fa-users"></i> Friends</a></li>
-                    <li><a href="photos.html"> <i class="fa fa-file-image-o"></i> Photos</a></li>
+                    <li><a href="cvgenerator.php"> <i class="fa fa-file-image-o"></i> CV Generator</a></li>
                     <li class="active"><a href="edit_profile.html"> <i class="fa fa-edit"></i> Edit profile</a></li>
                 </ul>
             </div>
@@ -150,9 +145,53 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label class="col-md-3 control-label">Gender</label> 
+                  <select class="col-md-6" id="mySelect" name ="gender">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>  
+                    </select>
+                </div> 
+                
+                <div >
+                  <label class="col-md-3 control-label">Year Group</label>               
+                    <select class="col-md-6" id= "year" name="yeargroup">
+                    <option value="0" >Year</option>'?>
+                   
+                  <?php loadyeargroups(); ?>
+               <?php
+               echo '
+                    </select>
+                </div>
+
+                <div >
+                  <label class="col-md-3 control-label">Major</label>               
+                    <select class="col-md-6" id= "year" name="major">
+                    <option value="0" >Major</option>'?>
+                   
+                  <?php loadAllMajor(); ?>
+               <?php
+               echo '
+                    </select>
+                </div>
+
+                 <div class="form-group">
+                  <label class="col-md-3 control-label">Status</label> 
+                    <select class="col-md-6" id="mySelect" name ="status">
+                      <option value="Student">Student</option>
+                      <option value="Alunnus">Alumnus</option>  
+                    </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Nationality</label> 
+                  <div class="col-md-8">
+                    <input name= "nationality" class="form-control" type="text" value= "'.$nationality.'" required>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="col-md-3 control-label">Place of work</label> 
                   <div class="col-md-8">
-                    <input name= "poWork" class="form-control" type="text" value= "'.$placeofwork.'" required>
+                    <input name= "poWork" class="form-control" type="text" value= "'.$placeofwork.'">
                   </div>
                 </div> 
                 <div class="form-group">
@@ -161,7 +200,7 @@
       
                    <input type="file" name="images" class="form-control" accept="image/*" required>
                   
-                   <!-- <input name= "ppic" class="form-control" type="text" value= "'.$ppic.'" required> -->
+                   
                   </div>
                 </div> 
 
@@ -202,73 +241,8 @@
       </div>
     </div><!--End Timeline content -->
 
-    <!-- Online users sidebar content-->
-   <div class="chat-sidebar focus">
-      <div class="list-group text-left">
-        <p class="text-center visible-xs"><a href="#" class="hide-chat">Hide</a></p> 
-        <p class="text-center chat-title">Online users</p>  
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/guy-2.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Jeferh Smith</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-times-circle absent-status"></i>
-          <img src="img/Friends/woman-1.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Dapibus acatar</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/guy-3.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Antony andrew lobghi</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-2.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Maria fernanda coronel</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/guy-4.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Markton contz</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-times-circle absent-status"></i>
-          <img src="img/Friends/woman-3.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Martha creaw</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-times-circle absent-status"></i>
-          <img src="img/Friends/woman-8.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Yira Cartmen</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-4.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Jhoanath matew</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-5.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Ryanah Haywofd</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-9.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Linda palma</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/woman-10.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Andrea ramos</span>
-        </a>
-        <a href="messages.html" class="list-group-item">
-          <i class="fa fa-check-circle connected-status"></i>
-          <img src="img/Friends/child-1.jpg" class="img-chat img-thumbnail">
-          <span class="chat-user-name">Dora ty bluekl</span>
-        </a>        
-      </div>
-    </div><!-- Online users sidebar content-->
+   
+    </div> --><!-- Online users sidebar content-->
     
     <footer class="welcome-footer">
       <div class="container">

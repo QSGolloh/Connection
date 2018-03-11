@@ -1,4 +1,4 @@
-
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,18 +25,21 @@
     </head>
     <body class="animated fadeIn">
       <?php // so here i included the necessary files 
-      include_once('../security/core_ini.php'); 
+    
       include_once('../controller/userprofilecontroller.php');
       include_once('../classes/loadclass.php');
       $id;
       if(isset($_GET['id'])){
           $id = $_GET['id'];
+      } else {
+        $id = $_SESSION['userid'];
       }
-      //$profile= new ProfileController(); i want it there  ok over
+      
       $array = getUserById($id);
       foreach($array as $item){
                 $firstname = $item['firstname'];
                 $lastname = $item['lastname'];
+                $email = $item['email'];
                 $gender = $item['gender'];
                 $status = $item['status'];
                 $year_group = $item['year_group_id']; //change year group to string
@@ -44,7 +47,7 @@
                 $nationality = $item['nationality'];
                 $placeofwork = $item['placeofwork'];
                 $ppic = $item['profile_pic']; 
-                $encoded_image = base64_encode($ppic);
+               // $encoded_image = base64_encode($ppic);
                 } 
       ?>
 
@@ -78,34 +81,28 @@
          <ul class="nav navbar-nav navbar-right">
           <li class="active">
             <a href="profile.html">
-              Hillary McBrewk
-              <img src="../img/Friends/woman-1.jpg" class="img-nav">
+             <?echo $firstname." ".$lastname ?>
+              <img src="<?php echo $ppic ?>" class="img-nav">
             </a>
           </li>
           <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
-          <li><a href="messages.html"><i class="fa fa-comments"></i></a></li>
+          <li><a href="messages.php"><i class="fa fa-comments"></i></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  Pages 
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+                <li><a href="searchpage.php">Search</a></li>
+              <li><a href="cvgenerator.php">CV</a></li>  
               <li><a href="recover_password.html">Recover password</a></li>
-              <li><a href="list_users.html">List users</a></li>
               <li><a href="photos.html">Photos</a></li>
               <li><a href="friends.html">Friends</a></li>
-              <li><a href="people_directory.html">User directory</a></li>
               <li><a href="profile.php">Profile</a></li>
               <li><a href="edit_profile.php">Edit profile</a></li>
               <li><a href="notifications.html">Notifications</a></li>
-              <li><a href="searchpage.php">Search</a></li>
-              
-              <li><a href="registration_email.html">Registration email</a></li>
-              <li><a href="grid_posts.html">Grid posts</a></li>
-              <li><a href="error404.html">Error 404</a></li>
-              <li><a href="error500.html">Error 500</a></li>
             </ul>
           </li>
-          <li><a href="#" class="nav-controller"><i class="fa fa-user"></i>Users</a></li>       
+          <li><a href="../logout.php" class="nav-controller">Logout</a></li>       
         </ul>
       </div>
     </div>
@@ -119,18 +116,18 @@
           <div class="panel">
             <div class="user-heading round">
               <a href="#">
-                <img src="../img/Friends/woman-1.jpg" alt="">
+                <img src="<?php echo $ppic ?>" alt="">
               </a>
               <h1><?echo $firstname." ".$lastname ?></h1>
-              <p>Email comes here</p>
+              <p><?echo $email ?></p>
             </div>
 
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="profile.html"> <i class="fa fa-user"></i> Profile</a></li>
-              <li class="active"><a href="about.html"> <i class="fa fa-info-circle"></i> About</a></li>
-              <li><a href="friends.html"> <i class="fa fa-users"></i> Friends</a></li>
-              <li><a href="photos.html"> <i class="fa fa-file-image-o"></i> Photos</a></li>
-              <li><a href="edit_profile.html"> <i class="fa fa-edit"></i> Edit profile</a></li>
+              <li><a href="profile.php"> <i class="fa fa-user"></i> Profile</a></li>
+             <!--  <li class="active"><a href="about.html"> <i class="fa fa-info-circle"></i> About</a></li> -->
+              <li><a href="friends.php"> <i class="fa fa-users"></i> Friends</a></li>
+              <li><a href="cvgenerator.php"> <i class="fa fa-file-image-o"></i> CV Generator</a></li>
+              <li><a href="edit_profile.php"> <i class="fa fa-edit"></i> Edit profile</a></li>
             </ul>
           </div>
         </div>
@@ -174,22 +171,6 @@
         </div> <!--End Timeline content -->
       </div>
 
-      <!-- Online users sidebar content-->
-  <!-- Online users sidebar content-->
-    
-    <footer class="welcome-footer">
-      <div class="container">
-        <p>
-          <div class="footer-links">
-            <a href="#">Terms of Use</a> | 
-            <a href="#">Privacy Policy</a> | 
-            <a href="#">Developers</a> | 
-            <a href="#">Contact</a> | 
-            <a href="#">About</a>
-          </div>   
-          Copyright &copy; Company - All rights reserved       
-        </p>
-      </div>
-    </footer>
+      
   </body>
   </html>

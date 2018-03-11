@@ -13,7 +13,7 @@
 </head>
 
 <!-- code for cv generator  -->
-<body>
+<body style ="font-family: Verdana;">
 	<?php
   require_once("../functions/loadcv.php"); ?>
 
@@ -39,7 +39,7 @@
      <!-- code for education  -->
      <div class="education row">
 		<div class="col-md-12 ">
-			EDUCATION <hr>	
+			<p>EDUCATION </p><hr>	
 
 			<?php
 				$edu_details = loadedu();
@@ -70,10 +70,10 @@
 
 
      <div class="achievement row">
-		<div class="col-md-12 ">
-			ACHIEVEMENTS/AWARDS <hr>
-
+     	<div class="col-md-12">
+				<p>ACHIEVEMENTS/AWARDS </p><hr>
 			<?php
+			
 
 			$award_details = loadawards();
 				foreach ($award_details as $get) 
@@ -82,12 +82,12 @@
 			      $location = $get['location'];
 			      $date = $get['awarddate'];
 			      echo"
-			<div class=\"col-md-9 bg-danger\">
-				<p> $award , $location </p>
-			
-			</div>
-			<div class=\"col-md-3 bg-primary\">
-				<p>$date</p>
+				<div class=\"col-md-9 bg-danger\">
+					<p> $award , $location </p>	
+				</div>
+				<div class=\"col-md-3 bg-primary\">
+					<p>$date</p>
+				
 		   </div>";
 				}
 		   ?>
@@ -96,7 +96,8 @@
 
 
      <div class="work experience row">
-			
+			<div class="col-md-12">
+			  <p>WORK EXPERIENCE </p><hr>
 			<?php
 			$work_details = loadwork();
 				foreach ($work_details as $let) 
@@ -109,8 +110,7 @@
 			      $act_split= explode('.', $activities);
 
 			      echo"
-			  <div class=\"col-md-12 \">
-			  WORK EXPERIENCE <hr>
+			  
 			<div class=\"col-md-9 bg-success\">
 				<p>$company - $location</p>
 				<p>$desc </p>
@@ -122,16 +122,17 @@
 			<div class=\"col-md-12 \">";
 			foreach ($act_split as $activities) {
 				echo "<p><li>  $activities</li><p>";
+				"</div>";
 			}
-			echo "</div>
-		   </div>";
+			
 				}
 		    ?>		
-		
+		</div>
      </div>
 
      <div class="project row">
-		
+		<div class="col-md-12">
+			  <p>PROJECTS AND RESEARCH </p><hr>
 				<?php
 			$proj_details = loadproj();
 				foreach ($proj_details as $let) 
@@ -144,10 +145,8 @@
 
 			      $task_split= explode('.', $task); // code to split tasks by delimeter "."
 
-
 			      echo "
-			  <div class=\"col-md-12 \">
-			  PROJECTS AND RESEARCH <hr>
+			  
 			<div class=\"col-md-9 bg-primary\">
 				<p>$project</p>
 				<p>$descpt </p>
@@ -158,12 +157,12 @@
 			<div class=\"col-md-12 \">";
 			foreach ($task_split as $task) {
 				echo "<p><li> $task </li><p>";
+				   "</div>";
 			}
-			echo "</div>
-		   </div>";
+			
 				}
 		    ?>
-		
+		</div>
      </div>
 
 
@@ -184,7 +183,7 @@
 
 			      echo"
 			  <div class=\"col-md-12 \">
-			  CO-CURRICULAR ACTIVITIES <hr>
+			  <p>CO-CURRICULAR ACTIVITIES</p><hr>
 			<div class=\"col-md-9 bg-primary\">
 				<p> $locate , $activity</p>
 				<p>$descpt </p>
@@ -214,10 +213,11 @@
 
 			      echo"
 			      <div class=\"col-md-12 bg-danger\">
-			SKILLS <hr>";
+			<p>SKILLS</p> <hr>";
 			foreach ($skill_split as $skll) { 
-			 echo" <ul>
-				<li>$skll</li>
+			 echo" 
+			 <ul>
+				<p><li>$skll</li></p>
 			</ul> ";
 		      }
 			echo "</div>";
@@ -233,22 +233,22 @@
 				foreach ($ref_details as $co) 
 				{
 			      $ref = $co['all_reference'];
+			     
 			      $ref_split= explode('.', $ref);
 			      echo"
 			      <div class=\"col-md-12 bg-success\">
-			      REFERENCES <hr> 
+			      <p>REFERENCES</p> <hr> 
 			<p>Available upon request</p>";
 			 foreach ($ref_split as $ref ) { 
-			 echo" <ul>
-				<li>$ref </li>
+			 echo" 
+			 <ul>
+				<p><li>$ref </li></p>
 			</ul> ";
 		      }
 			echo "</div>";
 				}
 		    ?>
 	
-		
-
 		</div>
 </div>
 

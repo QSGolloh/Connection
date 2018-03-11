@@ -24,6 +24,19 @@
     <![endif]-->
   </head>
   <body class="animated fadeIn">
+    <?php 
+  include_once('../controller/userprofilecontroller.php');
+  
+  $array = getUserById($_SESSION['userid']);
+  foreach($array as $item){
+      $firstname = $item['firstname'];
+      $lastname = $item['lastname'];
+      $email = $item['email'];
+      $ppic = $item['profile_pic'];
+     // $encoded_image = base64_encode($ppic);
+  }
+  ?>
+  
 
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top navbar-principal">
@@ -41,19 +54,19 @@
           </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-    			<div class="col-md-5 col-sm-4">         
-    			 <form class="navbar-form">
-    			    <div class="form-group" style="display:inline;">
-    			    </div>
-    			  </form>
-    			</div>        
+          <div class="col-md-5 col-sm-4">         
+           <form class="navbar-form">
+              <div class="form-group" style="display:inline;">
+              </div>
+            </form>
+          </div>        
       <ul class="nav navbar-nav navbar-right">
-       <!--  <li>
-          <a href="profile.html">
-            Logged in user
-            <img src="../img/Friends/woman-1.jpg" class="img-nav">
+        <li>
+          <a href="profile.php">
+        <?php  echo $firstname." ".$lastname ?>  <!--displays user's full name -->
+           <img src="<? echo $ppic ?>" class="img-nav">  <!--displays user's profile picture -->
           </a>
-        </li> -->
+        </li>
         <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
         <li class="active"><a href="messages.html"><i class="fa fa-comments"></i></a></li>
         <li class="dropdown">
@@ -61,17 +74,14 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+              <li><a href="searchpage.php">Search</a></li>
+              <li><a href="cvgenerator.php">CV</a></li>  
               <li><a href="recover_password.html">Recover password</a></li>
-              <li><a href="list_users.html">List users</a></li>
               <li><a href="photos.html">Photos</a></li>
               <li><a href="friends.html">Friends</a></li>
-              <li><a href="people_directory.html">User directory</a></li>
-              <li><a href="about.html">About</a></li>
+              <li><a href="profile.php">Profile</a></li>
               <li><a href="edit_profile.php">Edit profile</a></li>
               <li><a href="notifications.html">Notifications</a></li>
-              <li><a href="searchpage.php">Search Page</a></li>
-              <li><a href="registration_email.html">Registration email</a></li>
-              <li><a href="grid_posts.html">Grid posts</a></li>
             </ul>
         </li>
         <li><a href="../logout.php" class="nav-controller"></i>Logout</a></li>       
@@ -111,7 +121,7 @@
                  ?>
                  <!-- code to display list of friends to chat with -->
                  <?php foreach ($data as $value) :?>
-                   <li class="active bounceInDown users" data-id="<?php echo $value['id']?>">
+                   <li class="active bounceInDown users" data-receiver="<?php echo $value['id']?>" data-sender="<?php echo $userid;?>" data-name="<?php echo $value['firstname'] . ' ' . $value['lastname']?>">
                     <a href="#" class="clearfix">
                       <img src="../img/Friends/doe.png" alt="" class="img-circle">
                       <div class="friend-name"> 
@@ -125,31 +135,10 @@
 
             <!-- selected chat content -->
             <div class="col-md-8 bg-white ">
+              <h3 id="receiverName"></h3>
               <div class="chat-message">
-                  <ul class="chat">
-                    
-                      <li class="left clearfix">
-                        <div class="chat-body clearfix">
-                          <div class="header">
-                            <strong class="primary-font">John Doe</strong>
-                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
-                          </div>
-                          <p>
-                            how are you?
-                          </p>
-                        </div>
-                      </li>
-                      <li class="right clearfix">
-                        <div class="chat-body clearfix">
-                          <div class="header">
-                            <strong class="primary-font">Sarah</strong>
-                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
-                          </div>
-                          <p>
-                            God is good. Forever great.
-                          </p>
-                        </div>
-                      </li> 
+                  <ul class="chat" id="chat">
+                     
                   </ul>
               </div>
               <div class="panel profile-info panel-info">
@@ -157,8 +146,7 @@
                     <textarea class="form-control input-lg p-text-area" rows="3" name= "message" placeholder="Write a message..." id="message"></textarea>
                
                 <div class="panel-footer">
-                    <input class="btn btn-info pull-right" name ="send" type="submit" value="Send">
-                   <!-- <input class ="button4" name ="submit" type="submit" value="Submit">-->
+                    <input class="btn btn-info pull-right" name ="send" type="submit" value="Send" id="button" >
                     <ul class="nav nav-pills">
                         <li><a href="#"><i class="fa fa-camera"></i></a></li>
                         <li><a href="#"><i class=" fa fa-film"></i></a></li>
@@ -175,36 +163,75 @@
     
 
     <script type="text/javascript">
+    let senderId = '' , receiverId = '';
+    document.querySelector("#button").addEventListener("click", (event)=>{
+      event.preventDefault();
+      sendMessage();
+    })
     function sendMessage(){
-        let output = '';
-        let placeholder = document.querySelector(".searchResult");
-        let message = document.querySelector("#message").value;
+      let message = document.getElementById("message").value;
+      let placeholder = document.getElementById("chat");
+      if(message !== ''){
         let xhr = new XMLHttpRequest();
-
-        xhr.open("GET", "./sendMessage.php?message="+message, true);
+        xhr.open("GET", `./sendMessage.php?message=${message}&sender=${senderId}&receiver=${receiverId}`, true);
         xhr.onreadystatechange = function() {
+          let output = '';
           if(xhr.readyState == 4 && xhr.status == 200) {
-              var result = JSON.parse(this.responseText);
+              let result = JSON.parse(this.responseText);
               if(result.length > 0){
               result.forEach(function(elem){
-                  output += `<li class="list-item block"><a href="<?php echo BASE_URL?>topic.php?topic=${elem.id}">
-                  ${elem.title}</a></li>`;
-              })
+                if(elem.hasOwnProperty('receiver')){
+                    output+= 
+                    `<li class="left clearfix">
+                        <div class="chat-body clearfix">
+                          <div class="header">
+                            <strong class="primary-font"></strong>
+                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>${elem['createdAt']}</small>
+                          </div>
+                          <p>
+                            ${elem['message']}
+                          </p>
+                        </div>
+                      </li>
+                      `
+                    }else{
+                      output+= 
+                    `<li class="right clearfix">
+                        <div class="chat-body clearfix">
+                          <div class="header">
+                            <strong class="primary-font"></strong>
+                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>${elem['createdAt']}</small>
+                          </div>
+                          <p>
+                            ${elem['message']}
+                          </p>
+                        </div>
+                      </li>`
+                    }
+                  })
             }else{
               output = `<h1>No Result match your query</h1>`
             }
-              placeholder.innerHTML = output;
-               $("#myModal").modal();
+              placeholder.innerHTML = output;  
           }
-        }
-        xhr.send();
       }
+        xhr.send();
+      }else{
+        alert("Add Message");
+      }
+    }
+
+    
 
 
 
-      //code to get user by clicking 
+     //code to get user by clicking 
       $(".users").click(function(e){
-        alert($(this).data('id'));
+        placeholder = document.getElementById("chat")
+        placeholder.innerHTML  = '';
+        receiverId = $(this).data('receiver');
+        senderId = $(this).data('sender');
+        document.getElementById("receiverName").innerHTML = 'Chatting With: '  + $(this).data('name');
       });
 
     </script>

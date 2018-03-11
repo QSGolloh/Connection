@@ -35,8 +35,7 @@ function checkSearchTerm() {
 function findUserByMajor(major) {   
     $('.matches').empty();
     var divElements = "";
-    //var major = document.getElementById('search').value; //getting the value from the search box
-    //var major = document.getElementById('major').value;
+   
     if (major != '') {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -77,8 +76,7 @@ function findUserByMajor(major) {
 function findUserByYear(yeargroup) {
     $('.matches').empty();
     var divElements = "";
-    //var yeargroup = document.getElementById('search').value; //getting the value from the search box
-     //var yeargroup = document.getElementById('year').value;
+   
     if (yeargroup != '') {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {

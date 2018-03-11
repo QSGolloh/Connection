@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	// session_start();
 /**
  *@author Selassie Golloh
  *@version 1.0
@@ -11,6 +11,7 @@ include_once('../classes/userprofileclass.php');
 	//code to handle update button click
 	if (isset($_POST['update'])){
         editprofile();
+        echo "update";
 	}
 
 
@@ -29,6 +30,11 @@ include_once('../classes/userprofileclass.php');
 		$user_id = $_SESSION['userid'];  // get value from session
 		$lname = $_POST['lastname'];
 		$poWork= $_POST['poWork'];
+		$gender= $_POST['gender'];
+		$status = $_POST['status'];
+		$major = $_POST['major'];
+      $year_group = $_POST['yeargroup'];
+      $nationality = $_POST['nationality'];
 
 		//getting the picture and saving it as a URL in the database 
 		//$ppic= $_POST['ppic']; 
@@ -39,7 +45,8 @@ include_once('../classes/userprofileclass.php');
      	$ppic = "../images/" . $_FILES["images"]["name"];
 
 		$profClass = new profile();
-		$profClass->editprofile($user_id, $lname, $poWork, $ppic);
+		$profClass->editprofile($user_id, $lname, $gender,$status, $major, $year_group, 
+      $nationality, $poWork, $ppic);
 		return $profClass->fetchResultObject();
 		if($profClass){
 		echo "Update successful ";

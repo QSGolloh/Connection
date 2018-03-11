@@ -33,7 +33,6 @@ class Login extends DatabaseConnection{
             $_SESSION['userid'] = $row['user_id'];
             $_SESSION['email'] = $row['email'];
             header('Location:../pages/edit_profile.php');
-            echo "Login successful";
           }else {
             echo "Login failed";
           }

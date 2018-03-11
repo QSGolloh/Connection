@@ -29,30 +29,41 @@
       <div class="login-page">
         <div class="row"> 
           <div class="col-md-4 col-md-offset-4"> 
-            <img src="../images/ashesilogo.jpeg"> 
-            <h1>Connect</h1>
-              <h3>Sign Up</h3>
+            <img src="../images/logoash.png"> 
+            <h1 style= "color:#B22222;">Connect</h1>
+              <h3 style= "color:#B22222;">Sign Up</h3>
 
 
             <form method = "post" action = "">
               <div class="form-content"> 
+
                 <div class="form-group"> 
-                  <input type="text" name = "email" class="form-control input-underline input-lg" placeholder="Email">
+                  <input type="text" name = "email" class="form-control input-underline input-lg" placeholder="Email" required>
+                  <span style="color: red"> <?php if(isset($GLOBALS['emailError'])){ echo $GLOBALS['emailError']; }?></span>
                 </div> 
+
                 <div class="form-group"> 
-                  <input type="text" name= "fname" class="form-control input-underline input-lg" placeholder="First Name">
-                </div>  
-                <div class="form-group"> 
-                  <input type="text" name = "lname" class="form-control input-underline input-lg" placeholder="Last Name">
-                </div>  
-                <div class="form-group"> 
-                  <input type="password" name="password" class="form-control input-underline input-lg" placeholder="Password">
+                  <input type="text" name= "fname" class="form-control input-underline input-lg" placeholder="First Name" required>
+                   <span style="color: red"> <?php if(isset($GLOBALS['fnameError'])){ echo $GLOBALS['fnameError']; }?></span>
                 </div> 
-              </div>
-                <a href="login.php" style = "color: white;">Log in</a>
-              <button name="register" type="submit" class="btn btn-info btn-lg">Register</button>
-            </form> 
+
+                <div class="form-group"> 
+                  <input type="text" name = "lname" class="form-control input-underline input-lg" placeholder="Last Name" required>
+                  <span style="color: red"> <?php if(isset($GLOBALS['lnameError'])){ echo $GLOBALS['lnameError']; }?></span>
+                </div> 
+
+                <div class="form-group"> 
+                  <input type="password" name="password" class="form-control input-underline input-lg" placeholder="Password" required>
+                  <span style="color: red"> <?php if(isset($GLOBALS['pwordError'])){ echo $GLOBALS['pwordError']; }?></span>  
+                </div> 
+                  <button name="register" type="submit" class="btn btn-info btn-lg">Register</button>
+                  <p style= "color:#B22222;">Already registered? <a href="login.php" style= "color:#B22222;">Log in here</a></p>
+              </div>  
+                
+            
+            </form>  
           </div> 
+
         </div> 
 
 

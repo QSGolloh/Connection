@@ -128,7 +128,7 @@ function validregister()
 
     //validate email
     if (isset($_POST['email']) && !empty($_POST["email"])) {
-        if (!preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $_POST['email'])) {
+        if (!preg_match("/[a-zA-Z_.+-]+@(ashesi|alumni\.ashesi)\.edu\.gh$/", $_POST['email'])) {
             $GLOBALS['emailError'] = "invalid email";
             $ok = false;
         } else {

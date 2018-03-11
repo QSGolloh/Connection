@@ -8,6 +8,8 @@
 
 include("../classes/loginclass.php");
 
+$error_login;
+
 
 if (isset($_POST['login'])){
     validlogin();
@@ -34,7 +36,9 @@ function validlogin(){
 
     if($success){
        verifyLogin($email, $password);
-    }
+       global $error_login;
+       $error_login = false;
+    } 
 
 
 }
@@ -54,12 +58,11 @@ function verifyLogin($email, $password){
  */
 function loginstatus()
 {
-    if (!empty($GLOBALS['status']) && $GLOBALS['status'] == 1) {
-        echo "<h4 style='color:red'>User Doesn't Exist or Signup Request is Awaiting Acceptance from Admin</h4><br>";
-
-    }
-    else if (!empty($GLOBALS['status']) && $GLOBALS['status'] == 2) {
-        echo "<h4 style='color:red'> Wrong Login Credentials</h4><br>" ;
+    global $error_login;
+    if (!isset($error_login)) {
+        echo "";
+    } else {
+        echo "<h4 style='color:red'>User Doesn't Exist or Wrong Credentials</h4><br>";
     }
     
 

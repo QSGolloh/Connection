@@ -25,6 +25,18 @@
     <script src="../js/sch.js"></script>
   </head>
   <body class="animated">
+      <?php 
+  include_once('../controller/userprofilecontroller.php');
+  
+  $array = getUserById($_SESSION['userid']);
+  foreach($array as $item){
+      $firstname = $item['firstname'];
+      $lastname = $item['lastname'];
+      $email = $item['email'];
+      $ppic = $item['profile_pic'];
+     // $encoded_image = base64_encode($ppic);
+  }
+  ?>
   
 
 
@@ -58,8 +70,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
           <a href="profile.php">
-         <!--  <? // echo $firstname." ".$lastname ?>-->
-            <img src="img/Friends/woman-1.jpg" class="img-nav">
+        <?php  echo $firstname." ".$lastname ?>
+           <img src="<? echo $ppic ?>" class="img-nav">
           </a>
         </li>
         <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
@@ -69,23 +81,17 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+            <li><a href="searchpage.php">Search</a></li>
+              <li><a href="cvgenerator.php">CV</a></li>  
               <li><a href="recover_password.html">Recover password</a></li>
-              <li><a href="list_users.html">List users</a></li>
               <li><a href="photos.html">Photos</a></li>
               <li><a href="friends.html">Friends</a></li>
-              <li><a href="people_directory.html">User directory</a></li>
               <li><a href="profile.php">Profile</a></li>
               <li><a href="edit_profile.php">Edit profile</a></li>
               <li><a href="notifications.html">Notifications</a></li>
-              <li><a href="searchpage.php">Search</a></li>
-              
-              <li><a href="registration_email.html">Registration email</a></li>
-              <li><a href="grid_posts.html">Grid posts</a></li>
-              <li><a href="error404.html">Error 404</a></li>
-              <li><a href="error500.html">Error 500</a></li>
             </ul>
         </li>
-        <li><a href="#" class="nav-controller"><i class="fa fa-user"></i>Users</a></li>       
+       <li><a href="../logout.php" class="nav-controller"></i>Logout</a></li>          
       </ul>
         </div>
       </div>
@@ -101,10 +107,10 @@
             <div class="panel">
                 <div class="user-heading round">
                     <a href="#">
-                        <img src="img/Friends/woman-1.jpg" alt="">
+                        <img src="<? echo $ppic ?>" alt="">
                     </a>
-                    <h1><!--<? //echo $firstname." ".$lastname ?>--></h1>
-                    <p>Email goes here</p>
+                    <h1><? echo $firstname." ".$lastname ?></h1>
+                    <p> <? echo $email ?></p>
                 </div>
                    <ul class="nav nav-pills nav-stacked">
                    <li><a href="cvgenerator.php"> <i class="fa fa-user"></i> Header</a></li>
@@ -119,7 +125,7 @@
             </div>
           </div>
               <div class="profile-info col-md-8">
-              <form method = "post" action = "">
+              <form method = "post" action = "../processes.php">
              
 
               <h3 > Education</h3> <!-- Beginning of Education details -->
@@ -144,7 +150,7 @@
                 </div> 
 
                 <h4><a href="add-new-form">ADD NEW FIELD +</a></h4> <br>
-    
+
               <button name="education_back" type="submit" class="btn btn-info btn-lg">Back</button>
               <button name="edu_save" type="submit" class="btn btn-info btn-lg">Save Changes</button>
               <button name="edu_next" type="submit" class="btn btn-info btn-lg">Next</button>
@@ -157,8 +163,7 @@
       </div>
     <!--End Timeline content -->
 
-    <!-- Online users sidebar content-->
-   
+
     
     <footer class="welcome-footer">
       <div class="container">

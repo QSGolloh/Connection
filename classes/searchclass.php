@@ -47,7 +47,7 @@ class searchUser extends DatabaseConnection
 
 
      /**
-     *function to search by major
+     *function to search by year 
      *@return users with particular major
      **/
     function getUserByYeargroup($yeargroup)

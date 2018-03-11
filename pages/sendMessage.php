@@ -1,6 +1,4 @@
 <?php
-session_start();
-$_SESSION['userid'])
 require_once("../database/dbconnectclass.php");
 function sanitize($data){
   $data = trim($data);
@@ -9,15 +7,24 @@ function sanitize($data){
   return $data;
 }
 $load = new DatabaseConnection();
-$sender = $_SESSION['email'] ;
-$
 $message = isset($_GET["message"]) ? sanitize($_GET["message"]): null;
-$process_query = $load->query("INSERT INTO messageUsers (senderId, receiverId, message_type) Values ($sender, )");
-if($process_query){
-  $data = array();
-  while($row = $load->fetch()){
-    $data[] = $row;
-  }
-  echo json_encode($data);
+$senderId = isset($_GET["sender"]) ? sanitize($_GET["sender"]): null;
+$receiverId = isset($_GET["receiver"]) ? sanitize($_GET["receiver"]): null;
+$process_query = $load->query("INSERT INTO messages(senderId, receiverId, message) VALUES ('$senderId', '$receiverId', '$message')");
+if($process_query)
+{
+  	$query = $load->query("SELECT * FROM messages WHERE senderId=$senderId AND receiverId=$receiverId");
+  	if($query){
+        $data = array();
+        while($row = $load->fetch()){
+            $data[] = $row;
+        }
+        echo json_encode($data);
+    }else{
+    	echo "BAD";
+    }
+
+}else{
+	echo "FALSE";
 }
 ?>

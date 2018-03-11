@@ -1,4 +1,4 @@
-<?php session_start(); ?> 
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,26 +19,29 @@
     <script src="../assets/js/custom.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/h"text/javascript">tml5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="../js/script.js"></script>
-
   </head>
   <body class="animated">
-   <?php 
+  <?php 
+  require_once('../classes/loadclass.php'); 
   include_once('../controller/userprofilecontroller.php');
   
   $array = getUserById($_SESSION['userid']);
   foreach($array as $item){
       $firstname = $item['firstname'];
       $lastname = $item['lastname'];
-      $email = $item['email'];
+      $email =$item['email'];
+      $gender = $item['gender'];
+      $status = $item['status'];
+      $year_group = $item['year_group_id'];
+      $nationality = $item['nationality'];
+      $placeofwork = $item['placeofwork'];
       $ppic = $item['profile_pic'];
      // $encoded_image = base64_encode($ppic);
   }
   ?>
-  
 
 
     <!-- Fixed navbar -->
@@ -71,12 +74,12 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
           <a href="profile.php">
-        <?php  echo $firstname." ".$lastname ?>
-           <img src="<? echo $ppic ?>" class="img-nav">
+            <? echo $firstname." ".$lastname ?>
+            <img src="<? echo $ppic ?>" class="img-nav">
           </a>
         </li>
         <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
-        <li><a href="messages.html"><i class="fa fa-comments"></i></a></li>
+        <li><a href="messages.php"><i class="fa fa-comments"></i></a></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  Pages 
               <span class="caret"></span>
@@ -90,9 +93,10 @@
               <li><a href="profile.php">Profile</a></li>
               <li><a href="edit_profile.php">Edit profile</a></li>
               <li><a href="notifications.html">Notifications</a></li>
+                     
             </ul>
         </li>
-       <li><a href="../logout.php" class="nav-controller"></i>Logout</a></li>          
+        <li><a href="../logout.php" class="nav-controller"></i>Logout</a></li>       
       </ul>
         </div>
       </div>
@@ -111,67 +115,86 @@
                         <img src="<? echo $ppic ?>" alt="">
                     </a>
                     <h1><? echo $firstname." ".$lastname ?></h1>
-                    <p> <? echo $email ?></p>
+                    <p><? echo $email ?></p>
+             
                 </div>
-                   <ul class="nav nav-pills nav-stacked">
-                   <li><a href="cvgenerator.php"> <i class="fa fa-user"></i> Header</a></li>
-              <li><a href="education.php"> <i class="fa fa-info-circle"></i> Education</a></li>
-              <li><a href="awards.php"> <i class="fa fa-file-image-o"></i>Achievements</a></li>
-              <li><a href="workexperience.php"> <i class="fa fa-users"></i> Work Experience</a></li>
-              <li><a href="projects.php"> <i class="fa fa-file-image-o"></i>Projects & Research</a></li>
-              <li><a href="curricular.php"> <i class="fa fa-file-image-o"></i> Co-Curricular</a></li>
-              <li><a href="skills.php"> <i class="fa fa-edit"></i> Other Skills</a></li>
-              <li><a href="reference.php"> <i class="fa fa-info-circle"></i> References</a></li>
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="profile.php"> <i class="fa fa-user"></i> Profile</a></li>
+                    <!-- <li><a href="about.html"> <i class="fa fa-info-circle"></i> About</a></li> -->
+                    <li><a href="friends.html"> <i class="fa fa-users"></i> Friends</a></li>
+                    <li><a href="cvgenerator.php"> <i class="fa fa-file-image-o"></i> CV Generator</a></li>
+                    <li class="active"><a href="edit_profile.html"> <i class="fa fa-edit"></i> Edit profile</a></li>
                 </ul>
             </div>
           </div>
 
+        <div class="profile-info col-md-8">
+            <form method="post" action="" enctype="multipart/form-data">
+              <!-- update info -->
+                <div class="panel panel-info post animated fadeInUp">
+              <div class="panel-heading">
+                <h3 class="panel-title">Edit info</h3>
+              </div>    
 
-           <div class="profile-info col-md-8">
-
-              <form method = "post" action = "../processes.php">
-
-              <h3> Work Experience</h3>
-              <h6 style="color:red">List your work experience in reverse chronological order, most recent first followed by others in the past</h6><br>
-              <h5>Company 1</h5> 
-              <div class="form-content"> <!--Beginning of Work Experience -->
-              
-                <div class="form-group"> 
-                  <input type="text" name = "company1" class="form-control input-underline input-lg" placeholder="Company Name">
-                </div> 
-                <div class="form-group"> 
-                  <input type="text" name= "loc1" class="form-control input-underline input-lg" placeholder="Location">
-                </div>  
-                <div class="form-group"> 
-                  <input type="text" name = "jobtitle1" class="form-control input-underline input-lg" placeholder="Job Title">
-                </div>  
-                <div class="form-group"> 
-                  <textarea rows="4" cols="82" class="form-control input-underline input-lg" name="description1" id="description" placeholder=" Tasks Performed "></textarea>
-                </div>  
-                <div class="form-group"> 
-                  <input type="text" name = "date1" class="form-control input-underline input-lg" placeholder="Time period">
-                </div>  <br>
-              </div> 
-
-                <h4><a href="add-new-form">ADD NEW FIELD +</a></h4> <br>
-
-              <button name="workback" type="submit" class="btn btn-info btn-lg">Back</button>
-              <button name="worksave" type="submit" class="btn btn-info btn-lg">Save Changes</button>
-              <button name="worknext" type="submit" class="btn btn-info btn-lg">Next</button>
-            </form> 
-                  
-
-              </div> <!-- End of Work Experience -->
-
-          
-
-
-          </div>
-      </div> 
+              <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Email:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <div class="col-sm-10"> 
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
       </div>
-    <!--End Timeline content -->
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </div><!-- end update info-->
+            </form>
+
+           
+
+            <div class="panel panel-info post panel-shadow">
+              <div class="panel-heading">
+                <h3 class="panel-title">Change password</h3>
+              </div>            
+              <div class="panel-body">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Current password</label>
+                  <div class="col-md-7">
+                    <input class="form-control" type="text" value="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">New password</label>
+                  <div class="col-md-7">
+                    <input class="form-control" type="text" value="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-info">Update</button>
+                </div>                
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+        </div>
+    </div><!--End Timeline content -->
 
    
+    </div> --><!-- Online users sidebar content-->
     
     <footer class="welcome-footer">
       <div class="container">

@@ -10,14 +10,14 @@
     <link rel="icon" href="img/favicon.png">
     <title>Connect</title>
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/animate.min.css" rel="stylesheet">
-    <link href="font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/timeline.css" rel="stylesheet">
-    <link href="assets/css/friends.css" rel="stylesheet">
-    <script src="assets/js/jquery.1.11.1.min.js"></script>
-    <script src="bootstrap-3.3.5/js/bootstrap.min.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <link href="../bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/animate.min.css" rel="stylesheet">
+    <link href="../font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/css/timeline.css" rel="stylesheet">
+    <link href="../assets/css/friends.css" rel="stylesheet">
+    <script src="../assets/js/jquery.1.11.1.min.js"></script>
+    <script src="../bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -38,7 +38,7 @@
           </button>
           <a class="navbar-brand" href="index.html">
             
-            <b>Clean-Note</b>
+            <b>Connect</b>
           </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">

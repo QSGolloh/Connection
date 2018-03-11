@@ -1,4 +1,9 @@
-<?php session_start(); ?> 
+<?php session_start();
+/**
+ *@author Selassie Golloh
+ *@version 1.0
+ **/
+ ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +29,22 @@
   <![endif]-->
 </head>
 <body class="animated fadeIn">
-  <?php require_once('../classes/loadclass.php'); ?>
+  <?php require_once('../classes/loadclass.php'); 
+  include_once('../controller/userprofilecontroller.php');
+  
+  $array = getUserById($_SESSION['userid']);
+  foreach($array as $item){
+      $firstname = $item['firstname'];
+      $lastname = $item['lastname'];
+      // $gender = $item['gender'];
+      // $status = $item['status'];
+      // $year_group = $item['year_group'];
+      // $nationality = $item['nationality'];
+      // $placeofwork = $item['placeofwork'];
+      $ppic = $item['profile_pic'];
+     // $encoded_image = base64_encode($ppic);
+  }
+  ?>
 
   <!-- Fixed navbar -->
   <nav class="navbar navbar-default navbar-fixed-top navbar-principal">
@@ -43,60 +63,42 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
      <div class="col-md-5 col-sm-4">
-     <!--   <form class="navbar-form">
-          <div class="form-group" style="display:inline;">
-           <div class="input-group" style="display:table;">
-              <form>
-                <input type="radio" name="searchTerm" value="major"> Major
-                <input type="radio" name="searchTerm" value="year"> Year
-                <input type="radio" name="searchTerm" value="name"> Name
-              </form>
-              <input class="form-control" name="search" id="search" placeholder="Search..." autocomplete="off"
-                     type="text">
-              <span class="input-group-addon" style="width:1%;">
-                <span class="glyphicon glyphicon-search" onclick="checkSearchTerm()"></span>
-              </span>
-
-            </div>
-          </div>
-        </form>-->
+     
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
           <a href="profile.html">
-            Logged in user name
-            <img src="../img/Friends/woman-1.jpg" class="img-nav">
+              <? echo $firstname." ".$lastname ?>
+            <img src="<? echo $ppic ?>" class="img-nav">
           </a>
         </li>
         <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
-        <li><a href="messages.html"><i class="fa fa-comments"></i></a></li>
+        <li><a href="messages.php"><i class="fa fa-comments"></i></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
           aria-expanded="false"> Pages
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="recover_password.html">Recover password</a></li>
-          <li><a href="list_users.html">List users</a></li>
-          <li><a href="photos.html">Photos</a></li>
-          <li><a href="friends.html">Friends</a></li>
-          <li><a href="people_directory.html">User directory</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="edit_profile.html">Edit profile</a></li>
-          <li><a href="notifications.html">Notifications</a></li>
-          <li><a href="blank-cover.html">Blank cover</a></li>
-
-          <li><a href="registration_email.html">Registration email</a></li>
-          <li><a href="grid_posts.html">Grid posts</a></li>
+         <li><a href="searchpage.php">Search</a></li>
+              <li><a href="cvgenerator.php">CV</a></li>  
+              <li><a href="recover_password.html">Recover password</a></li>
+              <li><a href="photos.html">Photos</a></li>
+              <li><a href="friends.html">Friends</a></li>
+              <li><a href="profile.php">Profile</a></li>
+              <li><a href="edit_profile.php">Edit profile</a></li>
+              <li><a href="notifications.html">Notifications</a></li>
         </ul>
-      </li>
+        </li>
+        <li><a href="../logout.php" class="nav-controller"></i>Logout</a></li>    
+      
     </ul>
   </div>
 </div>
 </nav>
 <div class="row cover-container">
   <div class="col-centered">
-  <h2 style="color:white">Search here </h2>
+  <h2 >Search here </h2>
    <select id= "year">
     <option value="0" name="searchTerm0" >Year</option>
     <?php loadyeargroups(); ?>
@@ -108,7 +110,7 @@
 
   <input type="text" placeholder="Search Name" id="name" name="searchTerm">
   <button type="submit" onclick="checkSearchTerm()">Search</button>
-  <p class="user-text"> Search, connect and grow your network</p>-->
+
 </div> 
 </div>
 

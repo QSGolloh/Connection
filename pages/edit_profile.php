@@ -59,18 +59,7 @@
           </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-      <div class="col-md-5 col-sm-4">         
-       <form class="navbar-form">
-          <div class="form-group" style="display:inline;">
-            <div class="input-group" style="display:table;">
-              <input class="form-control" name="search" placeholder="Search..." autocomplete="off" type="text">
-              <span class="input-group-addon" style="width:1%;">
-                <span class="glyphicon glyphicon-search"></span>
-              </span>
-            </div>
-          </div>
-        </form>
-      </div>        
+     
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
           <a href="profile.php">

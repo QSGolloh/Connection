@@ -17,11 +17,6 @@
     <script src="../assets/js/jquery.1.11.1.min.js"></script>
     <script src="../bootstrap-3.3.5/js/bootstrap.min.js"></script>
     <script src="../assets/js/custom.js"></script>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body class="animated fadeIn">
     <?php 
@@ -33,7 +28,6 @@
       $lastname = $item['lastname'];
       $email = $item['email'];
       $ppic = $item['profile_pic'];
-     // $encoded_image = base64_encode($ppic);
   }
   ?>
   
@@ -107,10 +101,21 @@
                    require_once("../database/dbconnectclass.php");
                    $load = new DatabaseConnection();
                    $userid = $_SESSION['userid'];
-                   $process_query = $load->query("SELECT user.email as email, user.firstname as firstname, user.user_id as id, user.lastname as lastname FROM user
+                   $process_query = $load->query("SELECT user.email as email, user.firstname as firstname, user.user_id as id, user.lastname as lastname, user.profile_pic as pic FROM user
                     INNER JOIN  friendship 
-                    on user.user_id = friendship.sender_id
-                    WHERE friend_status = 'accepted' AND receiver_id=$userid");           
+                    on user.user_id = friendship.sender_id 
+                    WHERE friend_status = 'accepted' AND receiver_id=$userid
+
+                    UNION ALL 
+
+                    SELECT user.email as email, user.firstname as firstname, user.user_id as id, user.lastname as lastname, user.profile_pic as pic  FROM user
+                    INNER JOIN  friendship 
+                    on user.user_id = friendship.receiver_id 
+                    WHERE friend_status = 'accepted' AND sender_id=$userid
+
+
+                    ");    
+                                     
                    if($process_query){
                     $data = array();
                     while($row = $load->fetch()){
@@ -123,7 +128,7 @@
                  <?php foreach ($data as $value) :?>
                    <li class="active bounceInDown users" data-receiver="<?php echo $value['id']?>" data-sender="<?php echo $userid;?>" data-name="<?php echo $value['firstname'] . ' ' . $value['lastname']?>">
                     <a href="#" class="clearfix">
-                      <img src="../img/Friends/doe.png" alt="" class="img-circle">
+                      <img src="<?php echo $value['pic']?>" alt="" class="img-circle">
                       <div class="friend-name"> 
                         <strong><?php echo $value['firstname'] .' '. $value['lastname'] ?> </strong>
                       </div>
@@ -134,7 +139,7 @@
             </div>
 
             <!-- selected chat content -->
-            <div class="col-md-8 bg-white ">
+             <div class="col-md-8 bg-white ">
               <h3 id="receiverName"></h3>
               <div class="chat-message">
                   <ul class="chat" id="chat">
@@ -154,8 +159,8 @@
                     </ul>
                 </div>
                  </form>
-              </div><!-- end add post form-->           
-            </div><!-- selected chat content -->        
+              </div>  <!--end add post form-->           
+           </div> <!-- selected chat content -->        
           </div><!-- end chat content -->
         </div>
       </div>
@@ -220,10 +225,6 @@
         alert("Add Message");
       }
     }
-
-    
-
-
 
      //code to get user by clicking 
       $(".users").click(function(e){

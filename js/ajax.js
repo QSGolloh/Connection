@@ -11,25 +11,7 @@ function checkSearchTerm() {
     }else if (yearChoice != "0"){
         findUserByYear(yearChoice);
     }
-    /**
-    //looping through all the radio buttons to see which one is checked
-    for (var i = 0; i < choice.length; i++) {
-        if (choice[i].checked == true) {
-            //if (choice[i].value == "major") {
-            if (choice[i].id == "major") {
-                //call major ajax
-                findUserByMajor();
-            } else if (choice[i].id == "year") {
-                //call year ajax
-                findUserByYear();
-            } else if (choice[i].id == "search") {
-                //call name ajax
-                
-            }
-        } else {
-
-        }
-    } */
+    
 }
 
 function findUserByMajor(major) {   

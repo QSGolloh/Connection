@@ -13,10 +13,11 @@ $receiverId = isset($_GET["receiver"]) ? sanitize($_GET["receiver"]): null;
 $process_query = $load->query("INSERT INTO messages(senderId, receiverId, message) VALUES ('$senderId', '$receiverId', '$message')");
 if($process_query)
 {
-  	$query = $load->query("SELECT * FROM messages WHERE senderId=$senderId AND receiverId=$receiverId");
+    $newD = new DatabaseConnection();
+  	$query = $newD->query("SELECT * FROM messages WHERE senderId=$senderId AND receiverId=$receiverId");
   	if($query){
         $data = array();
-        while($row = $load->fetch()){
+        while($row = $newD->fetch()){
             $data[] = $row;
         }
         echo json_encode($data);

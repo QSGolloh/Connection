@@ -28,25 +28,25 @@ function sendMessage($email, $fname, $password ) {
         //Content
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'Ashesi Connect Email Verification';
-        $mail->Body    = '
+        $mail->Body    = "
                         Thanks for signing up!
             Your account has been created, you can login with the following credentials after 
             you have activated your account by pressing the url below.<br>
              
              <b>
-            ------------------------
-            Username: '.$fname.'
-            Password: '.$password.' 
+            ------------------------<br>
+            Username: '.$fname.'<br>
+            Password: '.$password.' <br>
             ------------------------
              </b><br>
             Please click this link to activate your account:
-            <a href="http://localhost/Connect/verify.php?email=$email">link</a>
-                ';
+            <a href='http://localhost/Connect/verify.php?email=$email'>link</a>
+                ";
       
 
         $mail->send();
 
-        echo 'Verification message has been sent to your ashesi email';
+        echo "<script>alert('Verification message has been sent to your ashesi email');</script>";
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }

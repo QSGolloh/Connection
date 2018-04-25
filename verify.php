@@ -14,24 +14,25 @@ $match  = mysqli_num_rows($search);
 
 // echo $match; // Display how many matches have been found -> remove this when done with testing ;)
 
+
 if($match > 0){
     // We have a match, activate the account
     // We have a match, activate the account
-mysqli_query($database->getconnection(), "UPDATE user SET userstatus='1' WHERE email='".$email. "AND userstatus='0'") 
+mysqli_query($database->getconnection(), "UPDATE user SET userstatus='1' WHERE email= '$email' AND userstatus='0'") 
 or die(mysqli_error($database->getconnection()));
-echo '<div class="statusmsg">Your account has been activated, you can now login</div>';
+echo '<div>Your account has been activated, you can now <a href="pages/login.php">login</a></div>';
 //figure out where to plass the statusmsg div on connect page.
 // i think once link is activited user should be sent to login page with
 //statusmsg div message 
 }else{
     // No match -> invalid url or account has already been activated.
-     echo '<div class="statusmsg">Invalid approach, please use the link that has been send to your email.</div>';
+     echo '<div >Invalid approach, please use the link that has been send to your email.</div>';
 }
 
 
 }else{
     // Invalid approach
-     echo '<div class="statusmsg">Invalid approach, please use the link that has been send to your email.</div>';
+     echo '<div >Invalid approach, please use the link that has been send to your email.</div>';
 }
 
 

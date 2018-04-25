@@ -1,55 +1,55 @@
 <?php
-
-
-if (isset($_POST['register'])){
-//Load composer's autoloader
-	require 'vendor/autoload.php';
-}
-
-
-
-// Import PHPMailer classes into the global namespace
-// These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// //Load composer's autoloader
-// require 'vendor/autoload.php';
+function sendMessage($email, $fname, $password ) {
+//Load Composer's autoloader
+    
 
-$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-try {
-    //Server settings
-    $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-    $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'user@example.com';                 // SMTP username
-    $mail->Password = 'secret';                           // SMTP password
-    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
+    require 'vendor/autoload.php';
 
-    //Recipients
-    $mail->setFrom('from@example.com', 'Connect');
-    $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-    // $mail->addAddress('ellen@example.com');               // Name is optional
-    // $mail->addReplyTo('info@example.com', 'Information');
-    $mail->addCC('cc@example.com');
-    // $mail->addBCC('bcc@example.com');
+    $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+    try {
+        
+        $mail->SMTPDebug = 0;
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com"; // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'connectashesi@gmail.com';                 // SMTP username
+        $mail->Password = 'CONNECTASHESI123';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
 
-    //Attachments
-    // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+        //Recipients
+        $mail->setFrom('connectashesi@gmail.com', 'Connect');
+      
+        $mail->addAddress($email, $fname);   
+       
+        //Content
+        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->Subject = 'Ashesi Connect Email Verification';
+        $mail->Body    = '
+                        Thanks for signing up!
+            Your account has been created, you can login with the following credentials after 
+            you have activated your account by pressing the url below.<br>
+             
+             <b>
+            ------------------------
+            Username: '.$fname.'
+            Password: '.$password.' 
+            ------------------------
+             </b><br>
+            Please click this link to activate your account:
+            <a href="http://localhost/Connect/verify.php?email=$email">link</a>
+                ';
+      
 
-    //Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->send();
 
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        echo 'Verification message has been sent to your ashesi email';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
 }
 
-
+?>

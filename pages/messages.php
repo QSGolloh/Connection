@@ -18,7 +18,7 @@
     <script src="../bootstrap-3.3.5/js/bootstrap.min.js"></script>
     <script src="../assets/js/custom.js"></script>
   </head>
-  <body class="animated fadeIn">
+  <body class="animated fadeIn"  >
     <?php 
   include_once('../controller/userprofilecontroller.php');
   
@@ -61,8 +61,8 @@
            <img src="<? echo $ppic ?>" class="img-nav">  <!--displays user's profile picture -->
           </a>
         </li>
-        <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
-        <li class="active"><a href="messages.html"><i class="fa fa-comments"></i></a></li>
+        <li><a href="home.php"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
+        <li class="active"><a href="messages.php"><i class="fa fa-comments"></i></a></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  Pages 
               <span class="caret"></span>
@@ -141,7 +141,7 @@
             <!-- selected chat content -->
              <div class="col-md-8 bg-white ">
               <h3 id="receiverName"></h3>
-              <div class="chat-message">
+              <div style= "height: 120px; overflow: scroll; overflow-x:hidden;" class="chat-message">
                   <ul class="chat" id="chat">
                      
                   </ul>

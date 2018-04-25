@@ -27,7 +27,6 @@ function friendconnect($receiver_id, $sender_id)
     $connectClass = new connectDetails();
     $connectClass->friendconnect($receiver_id, $sender_id);
     header('Location: ../pages/searchpage.php');
-    <div class ="aler"
     return $connectClass->fetchResultObject();
 
 }

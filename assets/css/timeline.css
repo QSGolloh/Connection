@@ -105,7 +105,15 @@ footer {
 /*============== profile image and name ===============================*/
 .cover-container{
   height:300px;
-  /*background:#3ca2e0;*/
+  background:#d84d4d;
+  margin-top:53px;
+  margin-left: 100px;
+}
+
+.cover-container1{
+  height:350px;
+  background-image: url("../../images/ash.jpg"); /*no-repeat center center fixed;
+/*  background:firebrick;*/
   margin-top:53px;
   margin-left: 100px;
 }

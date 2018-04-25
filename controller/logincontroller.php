@@ -23,7 +23,7 @@ function validlogin(){
     if(isset($_POST['email']) && !empty($_POST['email'])){
         $email = $_POST['email'];
     } else{
-        $emailError = "Please enter your email";
+        $emailError = "Please enter your Ashesi email";
         $success= false;
     }
 

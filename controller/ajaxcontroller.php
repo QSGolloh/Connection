@@ -6,6 +6,8 @@
 
 include_once('userprofilecontroller.php'); //including the userprofile controller 
 include_once('searchcontroller.php'); //including the searchcontroller
+include_once('postController.php');
+
 $msg = $_REQUEST['msg']; 
 
 switch($msg){
@@ -100,5 +102,27 @@ switch($msg){
 		echo json_encode($resultsArray);
 	}
 	break;
+
+	case 3:
+	$post = new PostController();
+	$allPosts = $post->getPosts();
+	$resultsArray = array();
+	if ($allPosts){
+			foreach ($allPosts as $res) {
+			$resultsArray[] = array(
+				'post_id' => $res['post_id'], 
+				'post_message' => $res['post_message'], 
+				'datetime_added' => $res['datetime_added'],
+				'user_firstname' => $res['firstname'],
+				'user_lastname' => $res['lastname'],
+				'user_ppic' => $res['profile_pic']
+			);
+		}
+		echo json_encode($resultsArray);
+	} else {
+		echo json_encode($resultsArray);
+	}
+	break;
+	
 }
 ?>

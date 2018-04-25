@@ -1,12 +1,14 @@
 <?php
 
 include_once("../classes/registerclass.php");
+include_once("../email.php");
 
 //declare variables to store data from form elements
 $email;
 $fname;
 $lname;
 $pword;
+$msg;
 
 /*
  if register button is clicked, call the signup function to register user
@@ -37,10 +39,11 @@ function register()
             // set status to 1 if adding was successful and 2 if there was an error
             if ($user->addNewUser($GLOBALS['fname'], $GLOBALS['lname'], $GLOBALS['email'], $GLOBALS['pword'])) {
                 $status = 1;
-                header("Location:../pages/login.php");
+                sendMessage($GLOBALS['email'], $GLOBALS['fname'], $GLOBALS['pword']);
+                // header("Location:../pages/login.php");
                // clearFormElements(); // clear content from form
 
-                echo "success";
+                // echo "success";
             } else {
                 $status = 2;
             }

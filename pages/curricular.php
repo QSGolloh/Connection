@@ -88,6 +88,7 @@
               <li><a href="profile.php">Profile</a></li>
               <li><a href="edit_profile.php">Edit profile</a></li>
               <li><a href="notifications.html">Notifications</a></li>
+
             </ul>
         </li>
        <li><a href="../logout.php" class="nav-controller"></i>Logout</a></li>          
@@ -120,6 +121,7 @@
               <li><a href="curricular.php"> <i class="fa fa-file-image-o"></i> Co-Curricular</a></li>
               <li><a href="skills.php"> <i class="fa fa-edit"></i> Other Skills</a></li>
               <li><a href="reference.php"> <i class="fa fa-info-circle"></i> References</a></li>
+                  <li><a href="pdf.php"><i class="fa fa-clone"></i> Preview</a></li>
                 </ul>
             </div>
           </div>

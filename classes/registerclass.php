@@ -29,23 +29,31 @@ class Registration extends DatabaseConnection
         $fname = $this->sqlinjection($fname);
         $lname = $this->sqlinjection($lname);
         $email = $this->sqlinjection($email);
+        // $userstatus = $this->sqlinjection($userstatus);
         $pword = trim($pword);
 
         //hash password for security purpose
         $hashedpword = md5($pword);//password_hash($pword, PASSWORD_DEFAULT);
 
         //write query statement
-        $queryStatement = "INSERT INTO user (firstname,lastname, email, password) VALUES ('$fname', '$lname', '$email', '$hashedpword')";
+        $queryStatement = "INSERT INTO user (firstname,lastname, email, password, userstatus) 
+        VALUES ('$fname', '$lname', '$email', '$hashedpword', 0)"; /// check this- should
+        //probably add user (hash, userstatus) Values ($hash, 0);
+        //ask constant 
 
         // execute query
         $useraccount = $this->query($queryStatement);
 
         //if query is successful
         if($useraccount){
-            return true; 
+            // Return Success - Valid Email
+    // $msg = 'Your account has been made, <br /> 
+    // please verify it by clicking the activation link that has been send to your email.'; //ask constant if this is right
+             return true; 
         }
         // if query is not successful
         else {
+            // $msg = 'Sorry an error occured, please try again.';
             return false;
         }
     }  

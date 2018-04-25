@@ -65,7 +65,7 @@
                 </a>
               </li>
               <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
-              <li><a href="messages.html"><i class="fa fa-comments"></i></a></li>
+              <li><a href="messages.php"><i class="fa fa-comments"></i></a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  Pages 
                   <span class="caret"></span>
@@ -112,6 +112,7 @@
                  <li><a href="curricular.php"> <i class="fa fa-file-image-o"></i> Co-Curricular</a></li>
                  <li><a href="skills.php"> <i class="fa fa-edit"></i> Other Skills</a></li>
                  <li><a href="reference.php"> <i class="fa fa-info-circle"></i> References</a></li>
+                 <li><a href="pdf.php"><i class="fa fa-clone"></i> Preview</a></li>
                </ul>
              </div>
            </div>

@@ -251,6 +251,10 @@
 	
 		</div>
 </div>
+			
+			<button name="pdf" type="submit" class="btn btn-info btn-lg">Save As PDF</button>
+
+
 
 </body> 
 </html>

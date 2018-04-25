@@ -80,7 +80,6 @@
               <li><a href="photos.html">Photos</a></li>
               <li><a href="friends.html">Friends</a></li>
               <li><a href="profile.php">Profile</a></li>
-              <li><a href="edit_profile.php">Edit profile</a></li>
               <li><a href="notifications.html">Notifications</a></li>
                      
             </ul>
@@ -113,7 +112,7 @@
                     <!-- <li><a href="about.html"> <i class="fa fa-info-circle"></i> About</a></li> -->
                     <li><a href="friends.html"> <i class="fa fa-users"></i> Friends</a></li>
                     <li><a href="cvgenerator.php"> <i class="fa fa-file-image-o"></i> CV Generator</a></li>
-                    <li class="active"><a href="edit_profile.html"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                   <!--  <li class="active"><a href="edit_profile.html"> <i class="fa fa-edit"></i> Edit profile</a></li> -->
                 </ul>
             </div>
           </div>
@@ -125,17 +124,20 @@
                 <div class="panel panel-info post animated fadeInUp">
               <div class="panel-heading">
                 <h3 class="panel-title">Edit info</h3>
-              </div>            
+              </div>   
+
               <div class="panel-body">
+
                 <div class="form-group">
                   <label class="col-md-3 control-label">Last name</label>
-                  <div class="col-md-8">
+                  <div class="col-md-4">
                     <input name= "lastname"  class="form-control" type="text" value= "'.$lastname.'" required>
                   </div>
                 </div>
+
                 <div class="form-group">
                   <label class="col-md-3 control-label">Gender</label> 
-                  <select class="col-md-6" id="mySelect" name ="gender">
+                  <select class="form-control col-md-" id="mySelect" name ="gender">
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>  
                     </select>
@@ -143,7 +145,7 @@
                 
                 <div >
                   <label class="col-md-3 control-label">Year Group</label>               
-                    <select class="col-md-6" id= "year" name="yeargroup">
+                    <select  id= "year" name="yeargroup">
                     <option value="0" >Year</option>'?>
                    
                   <?php loadyeargroups(); ?>
@@ -154,7 +156,7 @@
 
                 <div >
                   <label class="col-md-3 control-label">Major</label>               
-                    <select class="col-md-6" id= "year" name="major">
+                    <select  id= "year" name="major">
                     <option value="0" >Major</option>'?>
                    
                   <?php loadAllMajor(); ?>
@@ -165,7 +167,7 @@
 
                  <div class="form-group">
                   <label class="col-md-3 control-label">Status</label> 
-                    <select class="col-md-6" id="mySelect" name ="status">
+                    <select  id="mySelect" name ="status">
                       <option value="Student">Student</option>
                       <option value="Alunnus">Alumnus</option>  
                     </select>
@@ -203,7 +205,7 @@
 
            
 
-            <div class="panel panel-info post panel-shadow">
+       <!--      <div class="panel panel-info post panel-shadow">
               <div class="panel-heading">
                 <h3 class="panel-title">Change password</h3>
               </div>            
@@ -228,12 +230,12 @@
           </div>
       </div>
       </div>
-    </div><!--End Timeline content -->
+    </div> --><!--End Timeline content -->
 
    
-    </div> --><!-- Online users sidebar content-->
+    </div> <!-- Online users sidebar content-->
     
-    <footer class="welcome-footer">
+   <!--  <footer class="welcome-footer">
       <div class="container">
         <p>
           <div class="footer-links">
@@ -246,6 +248,6 @@
           Copyright &copy; Company - All rights reserved       
         </p>
       </div>
-    </footer>
+    </footer> -->
   </body>
 </html>

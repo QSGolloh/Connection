@@ -7,42 +7,29 @@
 //include the database class
 require_once("../database/dbconnectclass.php");
 
-class postDetails extends DatabaseConnection
+class Post extends DatabaseConnection
 {
-   /**
-     *function to display posts by a user
-     *@param id of the user
-     *@return object of the result (post details)
+
+
+    /**
+     *function to upload the post details into the database
+     *@param post details
+     *@return success or failure of upload
      **/
-    function getUserposts($userId)
+    function insertPosts($postmessage)
     {
-        //Query
-        $myQuery = "SELECT * FROM post WHERE user_id = '$userId' ORDER BY datetime_added DESC";
-
-        //execution of query
-        return  $this->query($myQuery);
-
+           $person_id = $_SESSION['userid'];
+    // query to insert data into the database
+        $myQuery = "INSERT INTO post (post_message, user_id) VALUES ('$postmessage', '$person_id') ";
+        return $this->query($myQuery);
     }
 
-
-    /**
-    *function to display photos uploaded/posted by user 
-    **/
-    function photoposts($user_id){
-    	$myQuery ="SELECT photos FROM photo ";
-
-    	return $this->query($myQuery);
-    }
-
-
-    /**
-    *function to display videos uploaded/posted by user 
-    **/
-    function videoposts($user_id){
-    	$myQuery ="SELECT video_format FROM video ";
-
-    	return $this->query($myQuery);
+    function getPosts()
+    {
+        $query = "SELECT post.post_id, user.firstname, user.lastname, user.profile_pic, post.datetime_added, post.post_message 
+        FROM post INNER JOIN user on user.user_id = post.user_id ORDER BY post.post_id DESC ";
+        return $this->query($query);
     }
 }
 
-?>
+    ?>

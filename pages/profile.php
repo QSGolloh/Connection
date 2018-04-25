@@ -127,7 +127,7 @@
              <!--  <li class="active"><a href="about.html"> <i class="fa fa-info-circle"></i> About</a></li> -->
               <li><a href="friends.php"> <i class="fa fa-users"></i> Friends</a></li>
               <li><a href="cvgenerator.php"> <i class="fa fa-file-image-o"></i> CV Generator</a></li>
-              <li><a href="edit_profile.php"> <i class="fa fa-edit"></i> Edit profile</a></li>
+              
             </ul>
           </div>
         </div>
@@ -169,6 +169,12 @@
             </div>
           </div>
         </div> <!--End Timeline content -->
+      </div>
+
+      <div class="col-md-8">
+      <form action="edit_profile.php">
+      <input type="submit" value="Edit Profile"/>
+      </form>
       </div>
 
       

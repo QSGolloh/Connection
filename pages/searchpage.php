@@ -96,9 +96,10 @@
   </div>
 </div>
 </nav>
-<div class="row cover-container">
-  <div class="col-centered">
-  <h2 >Search here </h2>
+<div class ="container" style="margin-top: 5%;">
+<div class="row">
+
+ <h2>Search here</h2>
    <select id= "year">
     <option value="0" name="searchTerm0" >Year</option>
     <?php loadyeargroups(); ?>
@@ -111,7 +112,8 @@
   <input type="text" placeholder="Search Name" id="name" name="searchTerm">
   <button type="submit" onclick="checkSearchTerm()">Search</button>
 
-</div> 
+
+ </div>
 </div>
 
 <br>

@@ -60,7 +60,7 @@ $array = getUserById($_SESSION['userid']);
 
   				<ul class="nav navbar-nav navbar-right">
   					<li>
-  						<a href="profile.html">
+  						<a href="profile.php">
   						<? echo $firstname." ".$lastname ?>
   							<img src="../images/<?php echo  $ppic ?> " class="img-nav">
   						</a>
@@ -72,19 +72,13 @@ $array = getUserById($_SESSION['userid']);
   							<span class="caret"></span>
   						</a>
   						<ul class="dropdown-menu">
-  							<li><a href="recover_password.html">Recover password</a></li>
-  							<li><a href="list_users.html">List users</a></li>
-  							<li><a href="photos.html">Photos</a></li>
-  							<li><a href="friends.html">Friends</a></li>
-  							<li><a href="people_directory.html">User directory</a></li>
-  							<li><a href="about.html">About</a></li>
-  							<li><a href="edit_profile.php">Edit profile</a></li>
-  							<li><a href="notifications.html">Notifications</a></li>
-  							<li><a href="blank-cover.html">Blank cover</a></li>
-  							<li><a href="registration_email.html">Registration email</a></li>
-  							<li><a href="grid_posts.html">Grid posts</a></li>
-  							<li><a href="error404.html">Error 404</a></li>
-  							<li><a href="error500.html">Error 500</a></li>
+  						<li><a href="searchpage.php">Search</a></li>
+              <li><a href="cvgenerator.php">CV</a></li>  
+              <li><a href="profile.php">Profile</a></li>
+              <li><a href="recover_password.html">Recover password</a></li>
+              <li><a href="photos.html">Photos</a></li>
+              <li><a href="friends.html">Friends</a></li>
+              <li><a href="notifications.html">Notifications</a></li>
   						</ul>
   					</li>
   					<li><a href="../logout.php" class="nav-controller"></i>Logout</a></li>				
@@ -94,7 +88,7 @@ $array = getUserById($_SESSION['userid']);
   	</nav>
   	<div class="row text-center cover-container">
   		<a href="#">
-  			<img src="../images/doe.png">
+  			<img src="../images/<?php echo  $ppic ?> ">
   		</a>
   		<h1 class="profile-name"><? echo $firstname." ".$lastname ?></h1>
   		<p class="user-text">Ashesi SNS: connect, share ideas and grow</p>

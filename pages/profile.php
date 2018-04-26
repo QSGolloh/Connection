@@ -80,12 +80,12 @@
          </div>        
          <ul class="nav navbar-nav navbar-right">
           <li class="active">
-            <a href="profile.html">
+            <a href="profile.php">
              <?echo $firstname." ".$lastname ?>
               <img src="<?php echo $ppic ?>" class="img-nav">
             </a>
           </li>
-          <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
+          <li><a href="home.php"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
           <li><a href="messages.php"><i class="fa fa-comments"></i></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  Pages 

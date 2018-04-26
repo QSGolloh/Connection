@@ -67,7 +67,7 @@
             <img src="<? echo $ppic ?>" class="img-nav">
           </a>
         </li>
-        <li><a href="home.html"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
+        <li><a href="home.php"><i class="fa fa-bars"></i>&nbsp;Home</a></li>
         <li><a href="messages.php"><i class="fa fa-comments"></i></a></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  Pages 
@@ -121,42 +121,46 @@
   echo '<div class="profile-info col-md-8">
             <form method="post" action="" enctype="multipart/form-data">
               <!-- update info -->
-                <div class="panel panel-info post animated fadeInUp">
+
+
+
+                    <div class="panel panel-info post animated fadeInUp">
               <div class="panel-heading">
                 <h3 class="panel-title">Edit info</h3>
-              </div>   
-
+              </div>            
               <div class="panel-body">
-
                 <div class="form-group">
                   <label class="col-md-3 control-label">Last name</label>
-                  <div class="col-md-4">
-                    <input name= "lastname"  class="form-control" type="text" value= "'.$lastname.'" required>
+                  <div class="col-md-8">
+                     <input name= "lastname"  class="form-control" type="text" value= "'.$lastname.'" required>
                   </div>
                 </div>
-
                 <div class="form-group">
-                  <label class="col-md-3 control-label">Gender</label> 
-                  <select class="form-control col-md-" id="mySelect" name ="gender">
+                  <label class="col-md-3 control-label">Gender</label>
+                  <div class="col-md-8">
+                     <select class="form-control " id="mySelect" name ="gender">
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>  
                     </select>
-                </div> 
-                
-                <div >
-                  <label class="col-md-3 control-label">Year Group</label>               
-                    <select  id= "year" name="yeargroup">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Year Group</label>
+                  <div class="col-md-8">
+                      <select class="form-control"  id= "year" name="yeargroup">
                     <option value="0" >Year</option>'?>
                    
                   <?php loadyeargroups(); ?>
-               <?php
+              <?php
                echo '
                     </select>
                 </div>
+                </div>
 
-                <div >
-                  <label class="col-md-3 control-label">Major</label>               
-                    <select  id= "year" name="major">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Major</label>    
+                  <div class="col-md-8">           
+                    <select class="form-control"  id= "year" name="major">
                     <option value="0" >Major</option>'?>
                    
                   <?php loadAllMajor(); ?>
@@ -164,13 +168,15 @@
                echo '
                     </select>
                 </div>
+                </div>
 
                  <div class="form-group">
                   <label class="col-md-3 control-label">Status</label> 
-                    <select  id="mySelect" name ="status">
+                   <div class="col-md-8">   
+                    <select class="form-control"  id="mySelect" name ="status">
                       <option value="Student">Student</option>
-                      <option value="Alunnus">Alumnus</option>  
-                    </select>
+                      <option value="Alumnus">Alumnus</option>  
+                    </select> </div>
                 </div>
 
                 <div class="form-group">
@@ -200,42 +206,14 @@
                 </div> 
               </div>
             </div><!-- end update info-->
+
+
             </form>';
   ?>
-
-           
-
-       <!--      <div class="panel panel-info post panel-shadow">
-              <div class="panel-heading">
-                <h3 class="panel-title">Change password</h3>
-              </div>            
-              <div class="panel-body">
-                <div class="form-group">
-                  <label class="col-md-4 control-label">Current password</label>
-                  <div class="col-md-7">
-                    <input class="form-control" type="text" value="">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-4 control-label">New password</label>
-                  <div class="col-md-7">
-                    <input class="form-control" type="text" value="">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-info">Update</button>
-                </div>                
-              </div>
-            </div>
-          </div>
-      </div>
-      </div>
-    </div> --><!--End Timeline content -->
-
    
     </div> <!-- Online users sidebar content-->
     
-   <!--  <footer class="welcome-footer">
+<!--     <footer class="welcome-footer">
       <div class="container">
         <p>
           <div class="footer-links">
